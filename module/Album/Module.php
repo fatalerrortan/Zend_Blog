@@ -9,7 +9,7 @@ namespace Album;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-
+//use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Album\Model\Album;
 use Album\Model\AlbumTable;
 use Zend\Db\ResultSet\ResultSet;
@@ -35,8 +35,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface{
 
         return include __DIR__ . '/config/module.config.php';
     }
-
     public function getServiceConfig()
+//    public function getServiceConfiguration()
     {
         return array(
             'factories' => array(
