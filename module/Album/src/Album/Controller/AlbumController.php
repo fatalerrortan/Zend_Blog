@@ -27,6 +27,7 @@ class AlbumController extends AbstractActionController
 
     public function editAction()
     {
+//        echo "this is a test";
     }
 
     public function deleteAction()
