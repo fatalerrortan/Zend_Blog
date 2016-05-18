@@ -17,7 +17,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'Xulinblog\Controller\Xulinblog',
                         'action'     => 'index',
                     ),
                 ),
