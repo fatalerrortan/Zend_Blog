@@ -35,5 +35,9 @@ return array(
         'template_path_stack' => array(
             'xulinblog' => __DIR__ . '/../view',
         ),
+//        set Layout
+        'template_map' => array(
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+        ),
     ),
 );
