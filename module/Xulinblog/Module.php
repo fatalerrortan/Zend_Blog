@@ -8,6 +8,7 @@
 namespace Xulinblog;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+//first we need to let the ModuleManager know that our module has configuration that it needs to load. "public function getConfig()"
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface
@@ -28,6 +29,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 
     public function getConfig()
     {
+        //get config data from module.config.php
         return include __DIR__ . '/config/module.config.php';
     }
 }

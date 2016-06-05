@@ -7,9 +7,19 @@
  */
 return array(
     'controllers' => array(
+//        An invokable is a class that can be constructed without any arguments
+//        'invokables' => array(
+//            'Xulinblog\Controller\Index' => 'Xulinblog\Controller\IndexController',
+//        ),
+            'factories' => array(
+                'Xulinblog\Controller\Index' => 'Xulinblog\Factory\IndexControllerFactory'
+            )
+    ),
+
+    'service_manager' => array(
         'invokables' => array(
-            'Xulinblog\Controller\Index' => 'Xulinblog\Controller\IndexController',
-        ),
+            'Xulinblog\Service\PostServiceInterface' => 'Xulinblog\Service\PostService'
+        )
     ),
 
     'router' => array(
