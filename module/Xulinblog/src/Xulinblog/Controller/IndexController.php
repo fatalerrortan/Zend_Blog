@@ -29,6 +29,7 @@ class IndexController extends AbstractActionController{
 
     public function addAction()
     {
+        echo "test";
     }
 
     public function editAction()
