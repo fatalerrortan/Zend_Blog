@@ -7,7 +7,7 @@
  */
 namespace Xulinblog\Factory;
 
-use Xulinblog\Controller\ListController;
+use Xulinblog\Controller\IndexController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

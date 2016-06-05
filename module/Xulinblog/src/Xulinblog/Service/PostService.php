@@ -7,6 +7,8 @@
  */
 namespace Xulinblog\Service;
 
+use Xulinblog\Model\Post;
+
 class PostService implements PostServiceInterface{
 
     protected $data = array(
