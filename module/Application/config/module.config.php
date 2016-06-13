@@ -18,7 +18,7 @@ return array(
                     'route'    => '/',
                     'defaults' => array(
                         //Set Defaul Homepage!!!
-                        'controller' => 'Xulinblog\Controller\Index',
+                        'controller' => 'Blog\Controller\Index',
                         'action'     => 'index',
                     ),
                 ),
