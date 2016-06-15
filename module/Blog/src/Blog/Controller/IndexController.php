@@ -25,7 +25,7 @@ class IndexController extends AbstractActionController{
     public function indexAction(){
 
         return new ViewModel(array(
-            'posts' => $this->postService->findAllPosts()
+            'posts' => $this->postService->postMapper
         ));
     }
 

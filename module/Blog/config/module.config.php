@@ -17,12 +17,12 @@ return array(
     ),
 
     'service_manager' => array(
-//        'invokables' => array(
+        'invokables' => array(
+            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
+        ),
+//        'factories' => array(
 //            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
-//        ),
-        'factories' => array(
-            'Blog\Service\PostServiceInterface' => 'Blog\Factory\PostServiceFactory'
-        )
+//        )
     ),
 
     'router' => array(
@@ -54,13 +54,13 @@ return array(
         ),
     ),
 
-    'db' => array(
-        'driver'         => 'Pdo',
-        'username'       => 'dbo629553808',  //edit this
-        'password'       => 'txl881706',  //edit this
-        'dsn'            => 'mysql:dbname=db629553808;host=db629553808.db.1and1.com',
-        'driver_options' => array(
-            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
-        )
-    ),
+//    'db' => array(
+//        'driver'         => 'Pdo',
+//        'username'       => 'dbo629553808',  //edit this
+//        'password'       => 'txl881706',  //edit this
+//        'dsn'            => 'mysql:dbname=db629553808;host=db629553808.db.1and1.com',
+//        'driver_options' => array(
+//            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+//        )
+//    ),
 );
