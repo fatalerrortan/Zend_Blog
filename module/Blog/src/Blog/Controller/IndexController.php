@@ -24,9 +24,29 @@ class IndexController extends AbstractActionController{
 
     public function indexAction(){
 
-        return new ViewModel(array(
-            'posts' => $this->postService->postMapper
-        ));
+//        $view = new ViewModel(array(
+//            'posts' => $this->postService->postMapper,
+//        ));
+//        $view->setTemplate('foo/baz-bat/do-something-crazy');
+        $view = new ViewModel();
+        $headerView = new ViewModel(array('message' => 'header'));
+        $headerView->setTemplate('template/header/header.phtml');
+
+        $contentView = new ViewModel(array('message' => 'content'));
+        $contentView->setTemplate('template/content/content.phtml');
+
+        $sidebarView = new ViewModel(array('message' => 'sidebar'));
+        $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
+
+        $footerView = new ViewModel(array('message' => 'footer'));
+        $footerView->setTemplate('template/footer/footer.phtml');
+
+        $view->addChild($headerView, '_headerView')
+            ->addChild($contentView, '_contentView')
+            ->addChild($sidebarView, '_sidebarView')
+            ->addChild($footerView, '_footerView');
+        
+        return $view;
     }
 
     public function addAction()

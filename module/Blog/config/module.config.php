@@ -49,8 +49,10 @@ return array(
             'blog' => __DIR__ . '/../view',
         ),
 //        set Layout
+        // The TemplateMapResolver allows you to directly map template names
+        // to specific templates.
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+//            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
         ),
     ),
 

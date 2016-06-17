@@ -14,10 +14,10 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
-        $host_name  = "";
-        $database   = "";
-        $user_name  = "";
-        $password   = "";
+        $host_name  = "db629553808.db.1and1.com";
+        $database   = "db629553808";
+        $user_name  = "dbo629553808";
+        $password   = "txl881706";
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(!mysqli_connect_errno()) {
 
