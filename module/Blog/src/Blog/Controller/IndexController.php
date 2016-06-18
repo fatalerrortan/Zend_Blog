@@ -28,24 +28,28 @@ class IndexController extends AbstractActionController{
 //            'posts' => $this->postService->postMapper,
 //        ));
 //        $view->setTemplate('foo/baz-bat/do-something-crazy');
+        $layout = $this->layout();
         $view = new ViewModel();
         $headerView = new ViewModel(array('message' => 'header'));
         $headerView->setTemplate('template/header/header.phtml');
+        $layout->addChild($headerView, '_headerView');
 
-        $contentView = new ViewModel(array('message' => 'content'));
-        $contentView->setTemplate('template/content/content.phtml');
+//        $contentView = new ViewModel(array('message' => 'content'));
+//        $contentView->setTemplate('template/content/content.phtml');
+//
+//        $sidebarView = new ViewModel(array('message' => 'sidebar'));
+//        $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
+//
+//        $footerView = new ViewModel(array('message' => 'footer'));
+//        $footerView->setTemplate('template/footer/footer.phtml');
+//
+//        $view->addChild($headerView, '_headerView')
+//            ->addChild($contentView, '_contentView')
+//            ->addChild($sidebarView, '_sidebarView')
+//            ->addChild($footerView, '_footerView');
 
-        $sidebarView = new ViewModel(array('message' => 'sidebar'));
-        $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
+        //Helper
 
-        $footerView = new ViewModel(array('message' => 'footer'));
-        $footerView->setTemplate('template/footer/footer.phtml');
-
-        $view->addChild($headerView, '_headerView')
-            ->addChild($contentView, '_contentView')
-            ->addChild($sidebarView, '_sidebarView')
-            ->addChild($footerView, '_footerView');
-        
         return $view;
     }
 

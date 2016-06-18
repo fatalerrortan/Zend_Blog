@@ -27,9 +27,21 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         );
     }
 
-    public function getConfig()
-    {
+    public function getConfig(){
+
         //get config data from module.config.php
         return include __DIR__ . '/config/module.config.php';
     }
+//    Register for custom Helper function
+//    public function getViewHelperConfig(){
+//
+//        return array(
+//            'factories' => array(
+//                'test_helper' => function($sm) {
+//                    $helper = new View\Helper\Testhelper ;
+//                    return $helper;
+//                }
+//            )
+//        );
+//    }
 }

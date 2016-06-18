@@ -52,8 +52,14 @@ return array(
         // The TemplateMapResolver allows you to directly map template names
         // to specific templates.
         'template_map' => array(
-//            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+           'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
         ),
+    ),
+
+    'view_helpers' => array(
+        'invokables'=> array(
+            'load_category' => 'Blog\View\Helper\LoadCategory'
+        )
     ),
 
 //    'db' => array(
