@@ -24,12 +24,12 @@ class IndexController extends AbstractActionController{
 
     public function indexAction(){
 
-//        $view = new ViewModel(array(
-//            'posts' => $this->postService->postMapper,
-//        ));
+        $view = new ViewModel(array(
+            'posts' => $this->postService->postMapper,
+        ));
 //        $view->setTemplate('foo/baz-bat/do-something-crazy');
         $layout = $this->layout();
-        $view = new ViewModel();
+//        $view = new ViewModel();
         $headerView = new ViewModel(array('message' => 'header'));
         $headerView->setTemplate('template/header/header.phtml');
         $layout->addChild($headerView, '_headerView');

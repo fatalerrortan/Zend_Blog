@@ -51,9 +51,9 @@ return array(
 //        set Layout
         // The TemplateMapResolver allows you to directly map template names
         // to specific templates.
-        'template_map' => array(
-           'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-        ),
+//        'template_map' => array(
+//           'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+//        ),
     ),
 
     'view_helpers' => array(
@@ -61,7 +61,6 @@ return array(
             'load_category' => 'Blog\View\Helper\LoadCategory'
         )
     ),
-
 //    'db' => array(
 //        'driver'         => 'Pdo',
 //        'username'       => 'dbo629553808',  //edit this

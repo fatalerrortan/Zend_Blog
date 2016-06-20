@@ -62,8 +62,11 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            //for Drop Down Menu
+//            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ),
     ),
+
     'translator' => array(
         'locale' => 'en_US',
         'translation_file_patterns' => array(
@@ -102,4 +105,5 @@ return array(
             ),
         ),
     ),
+    //for Drop Down Menu
 );
