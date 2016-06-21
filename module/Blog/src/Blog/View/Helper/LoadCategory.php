@@ -37,7 +37,9 @@ class loadCategory extends AbstractHelper{
                     0 => 'desktop',
                     1 => 'server',
                 ),
-                'Curriculum vitae' => 'Curriculum vitae',
+                'Curriculum vitae' => array(
+                    0 => 'Curriculum vitae',
+                ),
         );
         $html = '';
         foreach ($category as $key => $value){

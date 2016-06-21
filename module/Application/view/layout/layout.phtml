@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('Xulin '. $this->translate('Blog'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -15,7 +15,6 @@
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
-
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
@@ -26,11 +25,18 @@
 
     </head>
     <body>
-
         <?php echo $this->_headerView; ?>
-
         <div class="container">
-            <?php echo $this->content; ?>
+            <div class="row">
+                    <div class="col-md-8">
+                            <?php echo $this->content; ?>
+                    </div>
+                <div class="col-md-4">
+                    <!--            load template from view/blog/index/index.phtml-->
+                    <?php echo $this->_sidebarView; ?>
+                </div>
+
+            </div>
             <hr>
             <footer>
                 <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
