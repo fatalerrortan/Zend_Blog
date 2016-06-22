@@ -14,7 +14,10 @@
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+//                        ->prependStylesheet($this->basePath('css/bootstrap-social.css'))
+                  //      ->prependStylesheet($this->basePath('css/docs.css'))
+                 //       ->prependStylesheet($this->basePath('css/font-awesome.css'))?>
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
@@ -35,11 +38,11 @@
                     <!--            load template from view/blog/index/index.phtml-->
                     <?php echo $this->_sidebarView; ?>
                 </div>
-
+                
             </div>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <p>&copy; 2016 - <?php echo date('Y') ?> by Xulin. <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
