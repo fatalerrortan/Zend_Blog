@@ -15,7 +15,7 @@
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-//                        ->prependStylesheet($this->basePath('css/bootstrap-social.css'))
+                        ->prependStylesheet($this->basePath('css/social_icon/bootstrap-social.css'))
                   //      ->prependStylesheet($this->basePath('css/docs.css'))
                  //       ->prependStylesheet($this->basePath('css/font-awesome.css'))?>
         <!-- Scripts -->
@@ -25,20 +25,21 @@
             ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
             ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
-
+<!--        Font Awesome embed code!-->
+        <script src="https://use.fontawesome.com/c8fccc7037.js"></script>
     </head>
     <body>
         <?php echo $this->_headerView; ?>
         <div class="container">
             <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                             <?php echo $this->content; ?>
                     </div>
-                <div class="col-md-4">
-                    <!--            load template from view/blog/index/index.phtml-->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <?php echo $this->_sidebarView; ?>
                 </div>
-                
             </div>
             <hr>
             <footer>
