@@ -28,16 +28,7 @@
     <body>
         <?php echo $this->_headerView; ?>
         <div class="container">
-            <div class="row">
-                    <div class="col-md-12">
-                            <?php echo $this->content; ?>
-                    </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <?php echo $this->_sidebarView; ?>
-                </div>
-            </div>
+            <?php echo $this->content; ?>
             <hr>
             <footer>
                 <p>&copy; 2016 - <?php echo date('Y') ?> by Xulin. <?php echo $this->translate('All rights reserved.') ?></p>

@@ -1,37 +1,61 @@
 <br />
 <br />
 <br />
-<div class="col-md-4">
-    <div class="well">
-        <img src="<?php echo $this->basePath('img/blog/xulin.PNG')?>" class="img-thumbnail" alt="Xulin Profil" width="304" height="236">
+<!--Introdce Intro-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="well">
+                <img src="<?php echo $this->basePath('img/blog/xulin.PNG')?>" class="img-thumbnail" alt="Xulin Profil" width="304" height="236">
+            </div>
+        </div>
+    <div class="col-md-6">
+        <blockquote>
+            <p>
+                <?php echo $this->load_homepageWord(); ?>
+            </p>
+                <footer>Xulin</footer>
+        </blockquote>
+        <div class="row">
+            <div class="col-md-5">
+                <a class="btn btn-block btn-social btn-github" href="https://github.com/fatalerrortan">
+                    <span class="fa fa-github"></span> Sign in with GitHub
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a class="fa fa-weibo fa-2x" aria-hidden="true" href="http://www.weibo.com/u/1922372597/home?wvr=5">Weibo</a>
+            </div>
+        </div>
+    <br />
+        <div class="row">
+            <div class="col-md-1">
+                <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/xulintan">
+                    <span class="fa fa-facebook"></span>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=450&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
-<div class="col-md-6">
-    <blockquote>
-        <p>
-            <?php echo $this->load_homepageWord(); ?>
-        </p>
-        <footer>Xulin</footer>
-    </blockquote>
-    <div class="row">
-        <div class="col-md-5">
-            <a class="btn btn-block btn-social btn-github" href="https://github.com/fatalerrortan">
-                <span class="fa fa-github"></span> Sign in with GitHub
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a class="fa fa-weibo fa-2x" aria-hidden="true" href="http://www.weibo.com/u/1922372597/home?wvr=5">Weibo</a>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-1">
-            <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/xulintan">
-                <span class="fa fa-facebook"></span>
-            </a>
-        </div>
-        <div class="col-md-5">
-            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=450&layout=standard&action=like&show_faces=true&share=true&height=80&appId" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-        </div>
+<!--News Letter-->
+<div class="row">
+
+    <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+                <label for="newsletter" >While(like($posts)){ <br />$YOU = new Action("handsome"); $YOU->getNewsletter("Email");}</label>
+                <div class="well">
+                    <div class="col-md-10"><input class="form-control" id="newsletter" type="text" placeholder="Getting Newsletter by Your Email => youremail@email.com" /></div>
+                    <button type="button" class="btn btn-success">Join me</button>
+                </div>
+            </div>
+    <div class="col-md-3"></div>
+</div>
+<!--New Posts-->
+<div class="row">
+    <div class="col-md-12">
+        <?php echo $this->_sidebarView; ?>
     </div>
 </div>

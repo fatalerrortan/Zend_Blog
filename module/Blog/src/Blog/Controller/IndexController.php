@@ -35,15 +35,14 @@ class IndexController extends AbstractActionController{
         $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
 
 
-        $layout->addChild($headerView, '_headerView')
-                    ->addChild($sidebarView, '_sidebarView');
+        $layout->addChild($headerView, '_headerView');
 
 //        $contentView = new ViewModel(array('message' => 'content'));
 //        $contentView->setTemplate('template/content/content.phtml');
 //        $footerView = new ViewModel(array('message' => 'footer'));
 //        $footerView->setTemplate('template/footer/footer.phtml');
 //
-//        $view->addChild($contentView, '_contentView');
+        $view->addChild($sidebarView, '_sidebarView');
 
 
         //Helper
