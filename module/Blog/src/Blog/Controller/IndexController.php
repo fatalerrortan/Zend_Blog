@@ -28,38 +28,20 @@ class IndexController extends AbstractActionController{
             'posts' => $this->postService->postMapper,
         ));
         $layout = $this->layout();
+
         $headerView = new ViewModel(array('message' => 'header'));
         $headerView->setTemplate('template/header/header.phtml');
 
         $sidebarView = new ViewModel(array('message' => 'sidebar'));
         $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
 
-
         $layout->addChild($headerView, '_headerView');
-
-//        $contentView = new ViewModel(array('message' => 'content'));
-//        $contentView->setTemplate('template/content/content.phtml');
-//        $footerView = new ViewModel(array('message' => 'footer'));
-//        $footerView->setTemplate('template/footer/footer.phtml');
-//
         $view->addChild($sidebarView, '_sidebarView');
-
-
-        //Helper
 
         return $view;
     }
 
-    public function addAction()
-    {
-        echo "test";
-    }
+    public function testAction(){
 
-    public function editAction()
-    {
-    }
-
-    public function deleteAction()
-    {
     }
 }

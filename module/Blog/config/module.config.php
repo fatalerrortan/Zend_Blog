@@ -8,9 +8,9 @@
 return array(
     'controllers' => array(
 //        An invokable is a class that can be constructed without any arguments
-//        'invokables' => array(
-//            'Blog\Controller\Index' => 'Blog\Controller\IndexController',
-//        ),
+        'invokables' => array(
+            'Blog\Controller\Post' => 'Blog\Controller\PostController',
+        ),
         'factories' => array(
             'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory'
         )
@@ -24,11 +24,14 @@ return array(
 //            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
 //        )
     ),
-
+// This lines opens the configuration for the RouteManager
     'router' => array(
+        // Open configuration for all possible routes
         'routes' => array(
+            // Define a new route called "blog"
             'blog' => array(
                 'type'    => 'segment',
+                // Configure the route itself
                 'options' => array(
                     'route'    => '/blog[/:action][/:id]',
                     'constraints' => array(
