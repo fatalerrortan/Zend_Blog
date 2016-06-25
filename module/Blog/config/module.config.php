@@ -45,6 +45,25 @@ return array(
                 ),
             ),
         ),
+    //Router for PostController
+        'routes' => array(
+            // Define a new route called "blog"
+            'post' => array(
+                'type'    => 'segment',
+                // Configure the route itself
+                'options' => array(
+                    'route'    => '/post[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Post',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),
     ),
 
     'view_manager' => array(
@@ -68,9 +87,9 @@ return array(
     ),
 //    'db' => array(
 //        'driver'         => 'Pdo',
-//        'username'       => 'dbo629553808',  //edit this
-//        'password'       => 'txl881706',  //edit this
-//        'dsn'            => 'mysql:dbname=db629553808;host=db629553808.db.1and1.com',
+//        'username'       => '',  //edit this
+//        'password'       => '',  //edit this
+//        'dsn'            => 'mysql:dbname=;host=',
 //        'driver_options' => array(
 //            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
 //        )

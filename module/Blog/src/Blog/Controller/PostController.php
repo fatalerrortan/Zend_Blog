@@ -17,6 +17,12 @@ class PostController extends AbstractActionController{
 
     public function indexAction(){
 
-        echo "12312321";
+        $view = new ViewModel();
+        $layout = $this->layout();
+        $headerView = new ViewModel(array('message' => 'header'));
+        $headerView->setTemplate('template/header/header.phtml');
+        $layout->addChild($headerView, '_headerView');
+
+        return $view;
     }
 }

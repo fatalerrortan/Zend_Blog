@@ -42,6 +42,6 @@ class IndexController extends AbstractActionController{
     }
 
     public function testAction(){
-
+        echo "testController";
     }
 }
