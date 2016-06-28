@@ -8,11 +8,12 @@
 return array(
     'controllers' => array(
 //        An invokable is a class that can be constructed without any arguments
-        'invokables' => array(
-            'Blog\Controller\Post' => 'Blog\Controller\PostController',
-        ),
+//        'invokables' => array(
+//            'Blog\Controller\Post' => 'Blog\Controller\PostController',
+//        ),
         'factories' => array(
-            'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory'
+            'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
+            'Blog\Controller\Post' => 'Blog\Factory\PostControllerFactory',
         )
     ),
 

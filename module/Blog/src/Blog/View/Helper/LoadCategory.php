@@ -18,7 +18,7 @@ class loadCategory extends AbstractHelper{
                 'php' => array(
                     0 => 'php',
                     1 => 'magento',
-                    2 => 'zend framework'
+                    2 => 'zend framework' 
                 ),
                 'javascript' => array(
                     0 => 'javascript',

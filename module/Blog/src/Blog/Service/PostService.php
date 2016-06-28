@@ -27,10 +27,11 @@ class PostService implements PostServiceInterface{
 
     public function findAllPosts(){
         // TODO: Implement findAllPosts() method.
-
+        return 'all postz';
     }
 
     public function findPost($id){
         // TODO: Implement findPost() method.
+        return 'single post';
     }
 }
