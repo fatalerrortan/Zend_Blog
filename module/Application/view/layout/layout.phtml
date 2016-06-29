@@ -35,6 +35,10 @@
                 <p>&copy; 2016 - <?php echo date('Y') ?> by Xulin. <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        <?php
+            echo $this->inlineScript();
+            //echo $this->basePath('test/insertTest.txt');
+        ?>
+
     </body>
 </html>

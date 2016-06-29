@@ -19,9 +19,12 @@ class PostService implements PostServiceInterface{
         $user_name  = "dbo629553808";
         $password   = "txl881706";
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
-        if(!mysqli_connect_errno()) {
+        if(mysqli_connect_errno()) {
 
-            $this->postMapper = 'It works';
+            die('Connect Error!');
+        }else{
+
+            $this->postMapper = $connect;
         }
     }
 
@@ -32,6 +35,26 @@ class PostService implements PostServiceInterface{
 
     public function findPost($id){
         // TODO: Implement findPost() method.
-        return 'single post';
+        return 'single post'. $id;
+    }
+
+    public function insertTest(){
+
+        $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
+//        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
+
+
+        for ($i=0; $i <= 5; $i++){
+
+            $sql = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
+                  VALUES ('php', 'postTitle', '$test', 'php', 'active', 'Xulin Tan')";
+
+            if(!mysqli_query($this->postMapper, $sql)){
+                die(mysqli_error($this->postMapper));
+            }
+        }
+
+        mysqli_close($this->postMapper);
+    return 'down';
     }
 }

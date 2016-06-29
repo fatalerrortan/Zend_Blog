@@ -19,12 +19,11 @@ class PostController extends AbstractActionController{
 
     public function __construct(PostServiceInterface $postService){
 
-        $this->postService = $postService->findAllPosts();
+        $this->postService = $postService;
     }
 
     public function indexAction(){
 
-        echo  $this->postService;
         $view = new ViewModel();
         $layout = $this->layout();
         $headerView = new ViewModel(array('message' => 'header'));
@@ -32,9 +31,17 @@ class PostController extends AbstractActionController{
         $layout->addChild($headerView, '_headerView');
 
         $sidebarView = new ViewModel(array('message' => 'sidebar'));
-        $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
+        $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
         $view->addChild($sidebarView, '_sidebarView');
 
+       echo $this->postService->insertTest();
+
+
         return $view;
+    }
+
+    public function testAction(){
+
+
     }
 }
