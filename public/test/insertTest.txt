@@ -1,1 +1,115 @@
-Istanbul PHP User Group is proud to announce that the PHPKonf 2016! We'll host some of the best speakers, awesome talktopics, latest technologies, and up to date news in PHP. Join us on 21st/22nd of May for a two day, double track 
+<p>Programmer’s Reference Guide of Zend Framework 2¶
+Introduction to Zend Framework 2¶
+Overview
+Installation
+User Guide¶
+The user guide is provided to take you through a non-trivial example, showing you various techniques and features of the framework in order to build an application.
+
+Getting Started with Zend Framework 2
+Getting started: A skeleton application
+Modules
+Routing and controllers
+Database and models
+Styling and Translations
+Forms and actions
+Conclusion
+In-depth tutorial for beginners¶
+In this tutorial we will create a Blog-Application from scratch. We will go through all the details you need to learn to create your own ZF2 Application.
+
+Introducing our first “Blog” Module
+Introducing Services and the ServiceManager
+Preparing for different Database-Backends
+Introducing Zend\Db\Sql and Zend\Stdlib\Hydrator
+Understanding the Router
+Making use of Forms and Fieldsets
+Editing and Deleting Data
+Reviewing the Blog-application
+Getting Started With Zend Studio 10 & Zend Server 6¶
+The user guide is provided to take you through building a Zend Framework 2 application using Zend Studio and Zend Server.
+
+Getting Started with Zend Framework 2
+A quick tour of the skeleton application
+The MyTaskList application
+Listing tasks
+Application Diagnostics
+Conclusion
+Zend Framework Tool (ZFTool)¶
+Zend Framework Tool (ZFTool)
+Learning Zend Framework 2¶
+Learning Dependency Injection
+Unit Testing a Zend Framework 2 application
+Advanced Configuration Tricks
+Using the EventManager
+Using Zend\Navigation in your Album Module
+Using Zend\Paginator in your Album Module
+Setting up a database adapter
+Migration¶
+Migration from Zend Framework 1
+Namespacing Old Classes
+Running Zend Framework 2 and Zend Framework 1 in parallel
+Zend Framework 2 Reference¶
+Zend\Authentication¶
+Introduction to Zend\Authentication
+Database Table Authentication
+Digest Authentication
+HTTP Authentication Adapter
+LDAP Authentication
+Authentication Validator
+Zend\Barcode¶
+Introduction to Zend\Barcode
+Barcode creation using Zend\Barcode\Barcode class
+Zend\Barcode Objects
+Zend\Barcode Renderers
+Zend\Cache¶
+Zend\Cache\Storage\Adapter
+Zend\Cache\Storage\Capabilities
+Zend\Cache\Storage\Plugin
+Zend\Cache\Pattern
+Zend\Cache\Pattern\CallbackCache
+Zend\Cache\Pattern\ClassCache
+Zend\Cache\Pattern\ObjectCache
+Zend\Cache\Pattern\OutputCache
+Zend\Cache\Pattern\CaptureCache
+Zend\Captcha¶
+Introduction to Zend\Captcha
+Captcha Operation
+CAPTCHA Adapters
+Zend\Code\Generator¶
+Introduction
+Zend\Code\Generator Reference
+Zend\Code\Generator Examples
+Zend\Config¶
+Introduction to Zend\Config
+Theory of Operation
+Zend\Config\Reader
+Zend\Config\Writer
+Zend\Config\Processor
+The Factory
+Zend\Console¶
+Introduction to Zend\Console
+Console routes and routing
+Console-aware modules
+Console-aware action controllers
+Console adapters
+Console prompts
+Zend\Console\Getopt¶
+Zend\Console\Getopt
+Declaring Getopt Rules
+Fetching Options and Arguments
+Configuring Zend\Console\Getopt
+Zend\Crypt¶
+Introduction to Zend\Crypt
+Encrypt/decrypt using block ciphers
+Encrypt/decrypt a file
+Key derivation function
+Password
+Public key cryptography
+Zend\Db¶
+Zend\Db\Adapter
+Zend\Db\ResultSet
+Zend\Db\Sql
+Zend\Db\Sql\Ddl
+Zend\Db\TableGateway
+Zend\Db\RowGateway
+Zend\Db\Metadata
+</p>

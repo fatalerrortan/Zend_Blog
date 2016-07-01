@@ -14,10 +14,7 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
-        $host_name  = "db629553808.db.1and1.com";
-        $database   = "db629553808";
-        $user_name  = "dbo629553808";
-        $password   = "txl881706";
+
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
 
@@ -30,7 +27,10 @@ class PostService implements PostServiceInterface{
 
     public function findAllPosts(){
         // TODO: Implement findAllPosts() method.
-        return 'all postz';
+        $query = "SELECT * FROM 'blog_post'";
+        $result = mysqli_query($this->postMapper, $query);
+
+        return $result->fetch_assoc();
     }
 
     public function findPost($id){
@@ -44,10 +44,10 @@ class PostService implements PostServiceInterface{
 //        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
 
 
-        for ($i=0; $i <= 5; $i++){
+        for ($i=0; $i <= 3; $i++){
 
             $sql = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
-                  VALUES ('php', 'postTitle', '$test', 'php', 'active', 'Xulin Tan')";
+                  VALUES ('database', 'postTitle".$i."', '$test', 'database', 'active', 'Xulin Tan')";
 
             if(!mysqli_query($this->postMapper, $sql)){
                 die(mysqli_error($this->postMapper));

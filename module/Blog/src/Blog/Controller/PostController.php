@@ -24,24 +24,28 @@ class PostController extends AbstractActionController{
 
     public function indexAction(){
 
-        $view = new ViewModel();
+//      layout
         $layout = $this->layout();
-        $headerView = new ViewModel(array('message' => 'header'));
+        $headerView = new ViewModel();
         $headerView->setTemplate('template/header/header.phtml');
         $layout->addChild($headerView, '_headerView');
-
+        $view = new ViewModel();
+//        sidebar
         $sidebarView = new ViewModel(array('message' => 'sidebar'));
         $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
         $view->addChild($sidebarView, '_sidebarView');
+//        all posts template
+        $allPostsView = new ViewModel();
+        $allPostsView->setTemplate('template/content/allPostsView.phtml');
+        $view->addChild($allPostsView, '_allPostsView');
 
-       echo $this->postService->insertTest();
-
-
+//       echo $this->postService->insertTest();
         return $view;
     }
 
     public function testAction(){
 
+    print_r($this->postService->findAllPosts());
 
     }
 }
