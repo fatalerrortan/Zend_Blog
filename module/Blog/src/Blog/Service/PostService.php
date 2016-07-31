@@ -26,11 +26,11 @@ class PostService implements PostServiceInterface{
     }
 
     public function findAllPosts(){
-        // TODO: Implement findAllPosts() method.
-        $query = "SELECT * FROM blog_post";
-        $result = $this->postMapper->query($query);
 
-        return $result->fetch_assoc();
+        // TODO: Implement findAllPosts() method.
+        $result = mysqli_query($this->postMapper, "SELECT post_title FROM blog_post");
+        $row = mysqli_fetch_assoc($result);
+        return $row;
     }
 
     public function findPost($id){
