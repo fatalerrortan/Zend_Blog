@@ -24,6 +24,7 @@ class PostController extends AbstractActionController{
 
     public function indexAction(){
 
+        $pageIndex = $this->params()->fromQuery('page');
 //      layout
         $layout = $this->layout();
         $headerView = new ViewModel();
@@ -35,20 +36,13 @@ class PostController extends AbstractActionController{
         $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
-        $allPostsView = new ViewModel(array('allposts' => $this->postService));
+        $allPostsView = new ViewModel(array(
+            'allposts' => $this->postService,
+            'pageindex' => $pageIndex));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 
 //       echo $this->postService->insertTest();
         return $view;
-    }
-
-    public function testAction(){
-
-////       var_dump($this->postService->findAllPosts());
-//    foreach ($this->postService->findAllPosts() as $test){
-//           echo $test['post_title'];
-//        }
-        echo "test";
     }
 }

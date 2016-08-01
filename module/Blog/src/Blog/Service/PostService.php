@@ -14,7 +14,7 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
-     
+
 
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
@@ -22,20 +22,17 @@ class PostService implements PostServiceInterface{
         }else{
             $this->postMapper = $connect;
         }
-
-//        $db = new mysqli($host_name, $user_name, $password, $database);
-//
-//        if($db->connect_errno > 0){
-//            die('Unable to connect to database [' . $db->connect_error . ']');
-//        }else{
-//            $this->postMapper = "test!!!";
-//        }
     }
 
     public function findAllPosts(){
-
+//        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
-        $query = mysqli_query($this->postMapper, "SELECT * FROM blog_post");
+        $sql_query = "SELECT * 
+                      FROM blog_post
+                      ORDER BY post_create_time DESC
+                      LIMIT 10
+                      ";
+        $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);
         $keys = array('post_id', 'post_category', 'post_title', 'post_article', 'post_keyword', 'post_status', 'user_name', 'post_create_time', 'post_update_time', 'post_comment_id');
         $formatArray = $this->setKeyForSubArray($keys, $result);

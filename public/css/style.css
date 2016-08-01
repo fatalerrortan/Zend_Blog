@@ -35,3 +35,22 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+/*Xulin Edited*/
+
+h4 {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: #2c4762;
+}
+a:hover {
+    background-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+p.contentUnderTitle{
+    color: #0d6aad;
+}

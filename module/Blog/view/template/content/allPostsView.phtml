@@ -1,43 +1,19 @@
 <?php
     $allPosts = $this->allposts->findAllPosts();
-    print_r($allPosts[0]);
+    $contentInUl = '';
+    foreach ($allPosts as $item){
+        $contentInUl .= "<li>
+                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a><h4>".$item['post_title']."</h4></a><br />
+                            <p class='contentUnderTitle'>
+                                <span class='glyphicon glyphicon-time'></span> 
+                                <b>Posted on</b> ".$item['post_create_time']." <b>
+                                   &nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:</b> 
+                                <a>".$item['post_category']."</a> 
+                                    &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
+                                <b>Posted by</b> ".$item['user_name']."</p>
+                        </li><br />";
+    }
 ?>
 <ul>
-    <li>
-        <a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdf!!!!!!!!!!!!</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdfsd dfsgdfg</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdfsd </h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsg fdgg qasdas d</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdfsd dfas d</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdsdzaasd dfg fdgg qasdas d</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsadgg qasdas d</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
-    <li><a><h4>title titl title title titlevtitletitletitletitletitletitle sdsad sdfsd sdfsd dfs d</h4></a>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM <a>Category: php->magento</a> Posted by Xulin</p>
-    </li>
+    <?php echo $contentInUl; ?>
 </ul>
