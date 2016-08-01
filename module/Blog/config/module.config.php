@@ -83,7 +83,6 @@ return array(
         'invokables'=> array(
             'load_category' => 'Blog\View\Helper\LoadCategory',
             'load_homepageWord' => 'Blog\View\Helper\LoadHomepageWord',
-
         )
     ),
 //    'db' => array(

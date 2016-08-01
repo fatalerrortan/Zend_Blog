@@ -14,23 +14,32 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
+     
 
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
-
-            die('Connect Error!');
+         die('Connect Error!');
         }else{
-
             $this->postMapper = $connect;
         }
+
+//        $db = new mysqli($host_name, $user_name, $password, $database);
+//
+//        if($db->connect_errno > 0){
+//            die('Unable to connect to database [' . $db->connect_error . ']');
+//        }else{
+//            $this->postMapper = "test!!!";
+//        }
     }
 
     public function findAllPosts(){
 
-        // TODO: Implement findAllPosts() method.
-        $result = mysqli_query($this->postMapper, "SELECT post_title FROM blog_post");
-        $row = mysqli_fetch_assoc($result);
-        return $row;
+//        TODO: Implement findAllPosts() method.
+        $query = mysqli_query($this->postMapper, "SELECT * FROM blog_post");
+        $result = mysqli_fetch_all($query);
+        $keys = array('post_id', 'post_category', 'post_title', 'post_article', 'post_keyword', 'post_status', 'user_name', 'post_create_time', 'post_update_time', 'post_comment_id');
+        $formatArray = $this->setKeyForSubArray($keys, $result);
+        return $formatArray;
     }
 
     public function findPost($id){
@@ -56,5 +65,15 @@ class PostService implements PostServiceInterface{
 
         mysqli_close($this->postMapper);
     return 'down';
+    }
+
+    public function setKeyForSubArray($keys, $urArray){
+
+        $formatArray = array();
+        foreach ($urArray as $subArray){
+            $newSubArray = array_combine($keys,$subArray);
+            $formatArray[] = $newSubArray;
+        }
+        return $formatArray;
     }
 }
