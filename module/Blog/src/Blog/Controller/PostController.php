@@ -46,10 +46,21 @@ class PostController extends AbstractActionController{
         return $view;
     }
 
+    public function ajaxAction(){
+
+//        echo "it is working for ajax";
+        $pageIndex = $this->params()->fromQuery('page');
+//        echo $this->formatTargetPosts($this->postService->findAllPosts($pageIndex));
+        echo "<h1>$pageIndex</h1>";
+    }
+
     public function formatTargetPosts($array){
 
         $contentInUl = '';
         foreach ($array as $item){
+            if(empty($item['post_id'])){
+//                to Do for no Content
+            }
             $contentInUl .= "<li>
                             <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a><h4>".$item['post_title']."</h4></a><br />
                             <p class='contentUnderTitle'>
