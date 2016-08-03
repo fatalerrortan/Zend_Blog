@@ -37,12 +37,31 @@ class PostController extends AbstractActionController{
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
         $allPostsView = new ViewModel(array(
-            'allposts' => $this->postService,
+            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts($pageIndex)),
             'pageindex' => $pageIndex));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 
 //       echo $this->postService->insertTest();
         return $view;
+    }
+
+    public function formatTargetPosts($array){
+
+        $contentInUl = '';
+        foreach ($array as $item){
+            $contentInUl .= "<li>
+                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a><h4>".$item['post_title']."</h4></a><br />
+                            <p class='contentUnderTitle'>
+                                <span class='glyphicon glyphicon-time'></span> 
+                                <b>Posted on</b> ".$item['post_create_time']." <b>
+                                   &nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:</b> 
+                                <a>".$item['post_category']."</a> 
+                                    &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
+                                <b>Posted by</b> ".$item['user_name']."</p>
+                        </li><br />";
+        }
+
+        return $contentInUl;
     }
 }

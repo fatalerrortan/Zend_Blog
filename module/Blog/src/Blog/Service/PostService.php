@@ -14,7 +14,7 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
-
+    
 
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
@@ -24,18 +24,19 @@ class PostService implements PostServiceInterface{
         }
     }
 
-    public function findAllPosts(){
+    public function findAllPosts($pageIndex){
 //        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
         $sql_query = "SELECT * 
                       FROM blog_post
                       ORDER BY post_create_time DESC
-                      LIMIT 10
+                      LIMIT 5
                       ";
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);
         $keys = array('post_id', 'post_category', 'post_title', 'post_article', 'post_keyword', 'post_status', 'user_name', 'post_create_time', 'post_update_time', 'post_comment_id');
         $formatArray = $this->setKeyForSubArray($keys, $result);
+//        $endContent = $this->formatTargetPosts($formatArray);
         return $formatArray;
     }
 
@@ -48,8 +49,6 @@ class PostService implements PostServiceInterface{
 
         $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
 //        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
-
-
         for ($i=0; $i <= 3; $i++){
 
             $sql = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
