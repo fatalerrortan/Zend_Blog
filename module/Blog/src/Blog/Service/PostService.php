@@ -11,7 +11,7 @@ class PostService implements PostServiceInterface{
      */
     public function __construct(){
 
-        
+     
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -22,12 +22,17 @@ class PostService implements PostServiceInterface{
     public function findAllPosts($pageIndex){
 //        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
-        $pageIndexEnd = $pageIndex * 11;
-        $pageHead = $pageIndexEnd - 11;
+        if($pageIndex == 'ur'){
+            $pageIndexEnd = 10;
+            $pageIndexHead = 0;
+        }else{
+            $pageIndexHead = $pageIndex * 11 - 1;
+            $pageIndexEnd = 10;
+        }
         $sql_query = "SELECT * 
                       FROM blog_post
-                      ORDER BY post_create_time DESC
-                      LIMIT $pageHead, $pageIndexEnd
+                      ORDER BY post_id DESC
+                      LIMIT $pageIndexHead,$pageIndexEnd
                       ";
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);

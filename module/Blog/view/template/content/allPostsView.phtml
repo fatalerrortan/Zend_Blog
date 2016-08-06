@@ -1,24 +1,53 @@
-<input type="hidden" id="pageIndex" value="0" />
-<ul id="allPosts">
-    <?php echo $this->allposts; ?>
-</ul>
 <script>
     $(document).ready(function(){
-        var pageIndex = $('#pageIndex').val();
         $('#forward').click(function (){
+            var pageIndex = parseInt($('#pageIndex').val());
+            var newPageIndex = parseInt(pageIndex + 1);
+            $('#pageIndex').val(newPageIndex);
+//            alert("new: "+  $('#pageIndex').val());
+//            alert("ur: " + pageIndex);
             $.ajax({
                 type:"GET",
-                url:'http://www.xulin-tan.de/blog/public/post/ajax',
+                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+pageIndex,
                 dataType:"text",
                 contentType:false,
                 cache:false,
                 processData:false,
-                data:{ page: pageIndex},
+//                data:{ page: pageIndex},
+                success:function(responseText){
+                    if(responseText == ''){
+                        $('#allPosts').html('<h1>No More For A While :)</h1>');
+                    }else {$('#allPosts').html(responseText);}
+                }
+            });
+        });
+        $('#backward').click(function (){
+            var pageIndex = parseInt($('#pageIndex').val());
+            if(pageIndex == 1){pageIndex = 'ur';}
+            if(pageIndex == 2){
+                pageIndex = 'ur';
+                $('#pageIndex').val(1);
+            }
+            else {
+                pageIndex = parseInt(pageIndex - 1);
+                $('#pageIndex').val(pageIndex);
+            }
+            alert(pageIndex);
+            $.ajax({
+                type:"GET",
+                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+pageIndex,
+                dataType:"text",
+                contentType:false,
+                cache:false,
+                processData:false,
+//                data:{ page: pageIndex},
                 success:function(responseText){
                     $('#allPosts').html(responseText);
-                    $('#pageIndex').val(pageIndex + 11);
                 }
             });
         });
     });
 </script>
+<ul id="allPosts">
+    <?php echo $this->allposts; ?>
+</ul>
