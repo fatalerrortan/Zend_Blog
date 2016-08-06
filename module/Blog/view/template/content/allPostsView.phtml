@@ -2,13 +2,11 @@
     $(document).ready(function(){
         $('#forward').click(function (){
             var pageIndex = parseInt($('#pageIndex').val());
+    //set New Pageindex for hidden input
             var newPageIndex = parseInt(pageIndex + 1);
-            $('#pageIndex').val(newPageIndex);
-//            alert("new: "+  $('#pageIndex').val());
-//            alert("ur: " + pageIndex);
             $.ajax({
                 type:"GET",
-                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+pageIndex,
+                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+newPageIndex,
                 dataType:"text",
                 contentType:false,
                 cache:false,
@@ -17,25 +15,25 @@
                 success:function(responseText){
                     if(responseText == ''){
                         $('#allPosts').html('<h1>No More For A While :)</h1>');
-                    }else {$('#allPosts').html(responseText);}
+                        $('#pageIndex').val(newPageIndex);
+                        return false;
+                    }else {
+                        $('#allPosts').html(responseText);
+                        $('#pageIndex').val(newPageIndex);
+                    }
                 }
             });
         });
         $('#backward').click(function (){
             var pageIndex = parseInt($('#pageIndex').val());
-            if(pageIndex == 1){pageIndex = 'ur';}
-            if(pageIndex == 2){
-                pageIndex = 'ur';
-                $('#pageIndex').val(1);
-            }
+            if(pageIndex == 0){return false;}
             else {
-                pageIndex = parseInt(pageIndex - 1);
-                $('#pageIndex').val(pageIndex);
+                var newPageIndex = pageIndex - 1;
+                $('#pageIndex').val(newPageIndex);
             }
-            alert(pageIndex);
             $.ajax({
                 type:"GET",
-                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+pageIndex,
+                url:'http://www.xulin-tan.de/blog/public/post/ajax?page='+newPageIndex,
                 dataType:"text",
                 contentType:false,
                 cache:false,

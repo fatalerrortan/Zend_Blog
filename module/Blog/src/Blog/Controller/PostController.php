@@ -37,7 +37,7 @@ class PostController extends AbstractActionController{
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
         $allPostsView = new ViewModel(array(
-            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts('ur'))));
+            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0))));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 

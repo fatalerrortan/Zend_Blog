@@ -9,9 +9,10 @@ class PostService implements PostServiceInterface{
     /**
      * @param PostMapperInterface $postMapper
      */
+
     public function __construct(){
 
-     
+
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -19,20 +20,17 @@ class PostService implements PostServiceInterface{
             $this->postMapper = $connect;
         }
     }
+
     public function findAllPosts($pageIndex){
 //        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
-        if($pageIndex == 'ur'){
-            $pageIndexEnd = 10;
-            $pageIndexHead = 0;
-        }else{
-            $pageIndexHead = $pageIndex * 11 - 1;
-            $pageIndexEnd = 10;
-        }
+        if($pageIndex == 0){$pageIndexHead = 0;}
+        else{$pageIndexHead = $pageIndex * 11 - 1;}
+        $pageScope = 10;
         $sql_query = "SELECT * 
                       FROM blog_post
                       ORDER BY post_id DESC
-                      LIMIT $pageIndexHead,$pageIndexEnd
+                      LIMIT $pageIndexHead,$pageScope
                       ";
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);
@@ -45,6 +43,7 @@ class PostService implements PostServiceInterface{
         // TODO: Implement findPost() method.
         return 'single post'. $id;
     }
+
     public function insertTest(){
         $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
 //        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
@@ -58,6 +57,7 @@ class PostService implements PostServiceInterface{
         mysqli_close($this->postMapper);
         return 'down';
     }
+
     public function setKeyForSubArray($keys, $urArray){
         $formatArray = array();
         foreach ($urArray as $subArray){
