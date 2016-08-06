@@ -32,7 +32,7 @@ class IndexController extends AbstractActionController{
         $headerView = new ViewModel(array('message' => 'header'));
         $headerView->setTemplate('template/header/header.phtml');
 
-        $sidebarView = new ViewModel(array('message' => 'sidebar'));
+        $sidebarView = new ViewModel(array('allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0))));
         $sidebarView->setTemplate('template/sidebar/sidebar.phtml');
 
         $layout->addChild($headerView, '_headerView');
@@ -41,7 +41,18 @@ class IndexController extends AbstractActionController{
         return $view;
     }
 
-    public function testAction(){
-        echo "testController";
+    public function formatTargetPosts($array){
+
+        $contentInUl = '';
+        foreach ($array as $item){
+            $contentInUl .= "<li><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>
+                                <a><span>".$item['post_create_time']."</span>
+                                <i class=\"fa fa-bell\" aria-hidden=\"true\"></i>
+                                <h4>".$item['post_title']."</h4></a>
+                                <b>&nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:<a>".$item['post_category']."</a></b>
+                            </li>";
+        }
+
+        return $contentInUl;
     }
 }

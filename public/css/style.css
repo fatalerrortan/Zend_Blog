@@ -38,7 +38,7 @@ div.container a.brand {
 
 /*Xulin Edited*/
 
-h4 {
+h4, h5 {
     display: inline;
 }
 
@@ -53,4 +53,8 @@ a:hover {
 }
 p.contentUnderTitle{
     color: #0d6aad;
+}
+
+#sidebar_homepage{
+    background: url("../img/blog/terminal.png") transparent;
 }

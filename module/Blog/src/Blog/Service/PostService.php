@@ -29,7 +29,7 @@ class PostService implements PostServiceInterface{
         $pageScope = 10;
         $sql_query = "SELECT * 
                       FROM blog_post
-                      ORDER BY post_id DESC
+                      ORDER BY post_create_time DESC
                       LIMIT $pageIndexHead,$pageScope
                       ";
         $query = mysqli_query($this->postMapper, $sql_query);

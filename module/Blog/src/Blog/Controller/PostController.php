@@ -32,15 +32,16 @@ class PostController extends AbstractActionController{
         $layout->addChild($headerView, '_headerView');
         $view = new ViewModel();
 //        sidebar
-        $sidebarView = new ViewModel(array('message' => 'sidebar'));
+        $sidebarView = new ViewModel(array(
+            'newposts' => $this->formatTargetPosts($this->postService->findAllPosts(0), false)
+        ));
         $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
         $allPostsView = new ViewModel(array(
-            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0))));
+            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0), true)));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
-
 //       echo $this->postService->insertTest();
         return $view;
     }
@@ -49,20 +50,18 @@ class PostController extends AbstractActionController{
 
 //        echo "it is working for ajax";
         $pageIndex = $this->params()->fromQuery('page');
-        $content =  $this->formatTargetPosts($this->postService->findAllPosts($pageIndex));
+        $content =  $this->formatTargetPosts($this->postService->findAllPosts($pageIndex, true), true);
         $response = $this->getResponse();
         $response->setContent($content);
         return $response;
     }
 
-    public function formatTargetPosts($array){
+    public function formatTargetPosts($array, $flag){
 
         $contentInUl = '';
-        foreach ($array as $item){
-            if(empty($item['post_id'])){
-//                to Do for no Content
-            }
-            $contentInUl .= "<li>
+        if($flag == true){
+            foreach ($array as $item){
+                $contentInUl .= "<li>
                             <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a><h4>".$item['post_title']."</h4></a><br />
                             <p class='contentUnderTitle'>
                                 <span class='glyphicon glyphicon-time'></span> 
@@ -72,6 +71,15 @@ class PostController extends AbstractActionController{
                                     &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
                                 <b>Posted by</b> ".$item['user_name']."</p>
                         </li><br />";
+                }
+        }else{
+            foreach ($array as $item){
+                $contentInUl .= "<li>
+                                    <a>
+                                    <i class=\"fa fa-bell-o\" aria-hidden=\"true\"></i>
+                                    <h5>".substr($item['post_title'],0,42)."...</h5></a>
+                                </li>";
+            }
         }
 
         return $contentInUl;
