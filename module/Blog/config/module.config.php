@@ -14,6 +14,7 @@ return array(
         'factories' => array(
             'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
             'Blog\Controller\Post' => 'Blog\Factory\PostControllerFactory',
+            'Blog\Controller\Admin' => 'Blog\Factory\AdminControllerFactory',
         )
     ),
 
@@ -60,6 +61,25 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Post',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),
+        //Router for AdminController
+        'routes' => array(
+            // Define a new route called "blog"
+            'admin' => array(
+                'type'    => 'segment',
+                // Configure the route itself
+                'options' => array(
+                    'route'    => '/admin[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Blog\Controller\Admin',
                         'action'     => 'index',
                     ),
                 ),

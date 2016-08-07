@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-       
+
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');

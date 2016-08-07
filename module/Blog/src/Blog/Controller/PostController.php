@@ -41,13 +41,16 @@ class PostController extends AbstractActionController{
 //        all posts template
         if(empty($pattern)){
             $allposts_load = $this->formatTargetPosts($this->postService->findAllPosts(0, $category), true);
+            if(!empty($category)){
+                $buttonflag = "<input id='buttonflag' type='hidden' value='0' />";
+            }else{$buttonflag = "<input id='buttonflag' type='hidden' value='1' />";}
         }else{
             $allposts_load = $this->formatTargetPosts($this->postService->findAllPosts(0, '', $pattern), true);
-//            echo $pattern;
+            $buttonflag = "<input id='buttonflag' type='hidden' value='0' />";
         }
         $allPostsView = new ViewModel(array(
             'allposts' => $allposts_load,
-            'buttonFlag' => "<input id='buttonflag' type='hidden' value='0' />"));
+            'buttonFlag' => $buttonflag));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 //       echo $this->postService->insertTest();
