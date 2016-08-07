@@ -53,7 +53,13 @@ class PostService implements PostServiceInterface{
     }
     public function findPost($id){
         // TODO: Implement findPost() method.
-        return 'single post'. $id;
+        $sql_query = "SELECT post_article 
+                      FROM blog_post
+                      WHERE post_id = '$id'";
+        $query = mysqli_query($this->postMapper, $sql_query);
+        $result = mysqli_fetch_all($query);
+
+        return $result;
     }
 
     public function insertTest(){

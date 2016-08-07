@@ -46,7 +46,7 @@ class IndexController extends AbstractActionController{
         $contentInUl = '';
         foreach ($array as $item){
             $contentInUl .= "<li><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>
-                                <a><span>".$item['post_create_time']."</span>
+                                <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><span>".$item['post_create_time']."</span>
                                 <i class=\"fa fa-bell\" aria-hidden=\"true\"></i>
                                 <h4>".$item['post_title']."</h4></a>
                                 <b>&nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:<a>".$item['post_category']."</a></b>

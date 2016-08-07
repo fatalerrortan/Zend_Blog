@@ -26,10 +26,10 @@ class PostController extends AbstractActionController{
 
         $category = $this->params()->fromQuery('category');
 //      layout
-        $layout = $this->layout();
-        $headerView = new ViewModel();
-        $headerView->setTemplate('template/header/header.phtml');
-        $layout->addChild($headerView, '_headerView');
+//        $layout = $this->layout();
+//        $headerView = new ViewModel();
+//        $headerView->setTemplate('template/header/header.phtml');
+//        $layout->addChild($headerView, '_headerView');
         $view = new ViewModel();
 //        sidebar
         $sidebarView = new ViewModel(array(
@@ -43,6 +43,22 @@ class PostController extends AbstractActionController{
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 //       echo $this->postService->insertTest();
+        return $view;
+    }
+
+    public function articleAction(){
+
+        $id = $this->params()->fromQuery('id');
+        $view = new ViewModel();
+        $sidebarView = new ViewModel(array(
+            'newposts' => $this->formatTargetPosts($this->postService->findAllPosts(0), false)
+        ));
+        $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
+        $view->addChild($sidebarView, '_sidebarView');
+
+        $article = new ViewModel(array('article' => $this->postService->findPost($id)));
+        $article->setTemplate('template/content/article.phtml');
+        $view->addChild($article, '_article');
         return $view;
     }
 
@@ -62,7 +78,7 @@ class PostController extends AbstractActionController{
         if($flag == true){
             foreach ($array as $item){
                 $contentInUl .= "<li>
-                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a><h4>".$item['post_title']."</h4></a><br />
+                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><h4>".$item['post_title']."</h4></a><br />
                             <p class='contentUnderTitle'>
                                 <span class='glyphicon glyphicon-time'></span> 
                                 <b>Posted on</b> ".$item['post_create_time']." <b>
@@ -75,7 +91,7 @@ class PostController extends AbstractActionController{
         }else{
             foreach ($array as $item){
                 $contentInUl .= "<li>
-                                    <a>
+                                    <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'>
                                     <i class=\"fa fa-bell-o\" aria-hidden=\"true\"></i>
                                     <h5>".substr($item['post_title'],0,42)."...</h5></a>
                                 </li>";
