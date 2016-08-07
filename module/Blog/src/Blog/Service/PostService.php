@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-
+       
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -21,9 +21,15 @@ class PostService implements PostServiceInterface{
         }
     }
 
-    public function findAllPosts($pageIndex, $category){
+    public function findAllPosts($pageIndex, $category, $pattern){
 //        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
+        if(!empty($pattern)){
+            $sql_query = "SELECT * 
+                      FROM blog_post
+                      WHERE post_title LIKE '%$pattern%'  
+                      ORDER BY post_create_time DESC";
+        }else{
         $cateList = array('php','javascript','html','css','database','linux');
         if(!empty($category)){
             if(in_array($category, $cateList)){
@@ -43,6 +49,7 @@ class PostService implements PostServiceInterface{
                       FROM blog_post
                       ORDER BY post_create_time DESC
                       LIMIT $pageIndexHead,$pageScope";
+            }
         }
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);

@@ -1,6 +1,13 @@
 <br />
 <br />
 <br />
+<script>
+    $(document).ready(function () {
+        if(parseInt($("#buttonflag").val()) == 0){
+            $("#button_flag").hide();
+        }
+    });
+</script>
 
 <div class="row">
     <div class="col-md-8">
@@ -10,7 +17,7 @@
                 echo $this->_allPostsView;
             ?>
         </div>
-        <div class="text-center">
+        <div id="button_flag" class="text-center">
             <button id="backward" type="button" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
             <i class="fa fa-book fa-lg" aria-hidden="true"></i>
             <button id="forward" type="button" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>

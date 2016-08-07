@@ -12,7 +12,7 @@ interface PostServiceInterface{
      *
      * @return array|PostInterface[]
      */
-    public function findAllPosts($pageIndex, $category);
+    public function findAllPosts($pageIndex, $category, $pattern);
 
     /**
      * Should return a single blog post

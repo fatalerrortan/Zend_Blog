@@ -25,6 +25,7 @@ class PostController extends AbstractActionController{
     public function indexAction(){
 
         $category = $this->params()->fromQuery('category');
+        $pattern = $this->params()->fromPost('search_box');
 //      layout
 //        $layout = $this->layout();
 //        $headerView = new ViewModel();
@@ -38,8 +39,15 @@ class PostController extends AbstractActionController{
         $sidebarView->setTemplate('template/sidebar/sidebar_post.phtml');
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
+        if(empty($pattern)){
+            $allposts_load = $this->formatTargetPosts($this->postService->findAllPosts(0, $category), true);
+        }else{
+            $allposts_load = $this->formatTargetPosts($this->postService->findAllPosts(0, '', $pattern), true);
+//            echo $pattern;
+        }
         $allPostsView = new ViewModel(array(
-            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0, $category), true)));
+            'allposts' => $allposts_load,
+            'buttonFlag' => "<input id='buttonflag' type='hidden' value='0' />"));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 //       echo $this->postService->insertTest();
@@ -61,6 +69,8 @@ class PostController extends AbstractActionController{
         $view->addChild($article, '_article');
         return $view;
     }
+
+
 
     public function ajaxAction(){
 
