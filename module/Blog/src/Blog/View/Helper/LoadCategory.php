@@ -18,7 +18,7 @@ class loadCategory extends AbstractHelper{
                 'php' => array(
                     0 => 'php',
                     1 => 'magento',
-                    2 => 'zend framework' 
+                    2 => 'zendframework'
                 ),
                 'javascript' => array(
                     0 => 'javascript',
@@ -44,21 +44,15 @@ class loadCategory extends AbstractHelper{
         $html = '';
         foreach ($category as $key => $value){
 
-            $html .= "<li>";
-            if(!is_array($value)){
-                $html .= $value;
-                $html .= "</li>";
-            }else{
                 $html .= "<li class='dropdown'>";
-                $html .= "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">".$key."<b class=\"caret\"></b></a>";
+                $html .= "<a href=".$value." class=\"dropdown-toggle\" data-toggle=\"dropdown\">".$key."<b class=\"caret\"></b></a>";
                 $html .= " <ul class=\"dropdown-menu\">";
                 foreach ($value as $item){
                     $html .= "<li>";
-                    $html .= "<a href=\"blog-home-2.html\">".$item."</a>";
+                    $html .= "<a href='http://www.xulin-tan.de/blog/public/post/index?category=".$item."'>".$item."</a>";
                     $html .= "</li>";
                 }
                 $html .= "</ul></li>";
-            }
         }
 
         return $html;

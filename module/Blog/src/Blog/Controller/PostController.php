@@ -24,7 +24,7 @@ class PostController extends AbstractActionController{
 
     public function indexAction(){
 
-//        $pageIndex = $this->params()->fromQuery('page');
+        $category = $this->params()->fromQuery('category');
 //      layout
         $layout = $this->layout();
         $headerView = new ViewModel();
@@ -39,7 +39,7 @@ class PostController extends AbstractActionController{
         $view->addChild($sidebarView, '_sidebarView');
 //        all posts template
         $allPostsView = new ViewModel(array(
-            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0), true)));
+            'allposts' => $this->formatTargetPosts($this->postService->findAllPosts(0, $category), true)));
         $allPostsView->setTemplate('template/content/allPostsView.phtml');
         $view->addChild($allPostsView, '_allPostsView');
 //       echo $this->postService->insertTest();
@@ -50,7 +50,7 @@ class PostController extends AbstractActionController{
 
 //        echo "it is working for ajax";
         $pageIndex = $this->params()->fromQuery('page');
-        $content =  $this->formatTargetPosts($this->postService->findAllPosts($pageIndex, true), true);
+        $content =  $this->formatTargetPosts($this->postService->findAllPosts($pageIndex), true);
         $response = $this->getResponse();
         $response->setContent($content);
         return $response;

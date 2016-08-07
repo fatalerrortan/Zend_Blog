@@ -21,17 +21,29 @@ class PostService implements PostServiceInterface{
         }
     }
 
-    public function findAllPosts($pageIndex){
+    public function findAllPosts($pageIndex, $category){
 //        ORDER BY post_create_time DESC
 //        TODO: Implement findAllPosts() method.
-        if($pageIndex == 0){$pageIndexHead = 0;}
-        else{$pageIndexHead = $pageIndex * 11 - 1;}
-        $pageScope = 10;
-        $sql_query = "SELECT * 
+        $cateList = array('php','javascript','html','css','database','linux');
+        if(!empty($category)){
+            if(in_array($category, $cateList)){
+                $sub_query = $category."%";
+            }else{
+                $sub_query = "%".$category;
+            }
+            $sql_query = "SELECT * 
+                      FROM blog_post
+                      WHERE post_category LIKE '$sub_query' 
+                      ORDER BY post_create_time DESC";
+        }else{
+            if($pageIndex == 0){$pageIndexHead = 0;}
+            else{$pageIndexHead = $pageIndex * 11 - 1;}
+            $pageScope = 10;
+            $sql_query = "SELECT * 
                       FROM blog_post
                       ORDER BY post_create_time DESC
-                      LIMIT $pageIndexHead,$pageScope
-                      ";
+                      LIMIT $pageIndexHead,$pageScope";
+        }
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);
         $keys = array('post_id', 'post_category', 'post_title', 'post_article', 'post_keyword', 'post_status', 'user_name', 'post_create_time', 'post_update_time', 'post_comment_id');
