@@ -1,0 +1,15 @@
+<script>
+    $(document).ready(function(){
+
+        $('#retry_0, #retry_1').click(function(){
+
+            window.location.replace('http://www.xulin-tan.de/blog/public/admin/login');
+        });
+    });
+</script>
+<div class="row">
+    <?php
+        echo $this->_error_message;
+        echo $this->_admin_content;
+    ?>
+</div>

@@ -21,4 +21,6 @@ interface PostServiceInterface{
      * @return PostInterface
      */
     public function findPost($id);
+
+    public function userMapping($username, $password);
 }

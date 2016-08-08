@@ -69,6 +69,17 @@ class PostService implements PostServiceInterface{
         return $result;
     }
 
+    public function userMapping($username, $password){
+
+        $sql_query = "SELECT *
+                      FROM blog_user
+                      WHERE user_name = '$username' AND user_password = '$password'";
+        $query = mysqli_query($this->postMapper, $sql_query);
+        $result = mysqli_fetch_all($query);
+        if(empty($result)){return false;}
+        else{return true;}
+    }
+
     public function insertTest(){
         $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
 //        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";

@@ -22,9 +22,10 @@ return array(
         'invokables' => array(
             'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
         ),
-//        'factories' => array(
-//            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
-//        )
+        'factories' => array(
+            'Zend\Session\SessionManager' => 'Zend\Session\SessionManagerFactory',
+            'Zend\Session\Config\ConfigInterface' => 'Zend\Session\Service\SessionConfigFactory',
+        )
     ),
 // This lines opens the configuration for the RouteManager
     'router' => array(
@@ -80,7 +81,7 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Blog\Controller\Admin',
-                        'action'     => 'index',
+                        'action'     => 'login',
                     ),
                 ),
             ),
