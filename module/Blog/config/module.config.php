@@ -13,9 +13,8 @@ return array(
 //        ),
         'factories' => array(
             'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
-            'Blog\Controller\Post' => 'Blog\Factory\PostControllerFactory',
             'Blog\Controller\Admin' => 'Blog\Factory\AdminControllerFactory',
-            'Blog\Controller\Posts' => 'Blog\Factory\PostsControllerFactory',
+            'Blog\Controller\Posts' => 'Blog\Factory\PostsControllerFactory'
         )
     ),
 
@@ -48,29 +47,6 @@ return array(
                     ),
                 ),
             ),
-        ),
-    //Router for PostController
-//        'routes' => array(
-//            // Define a new route called "blog"
-//            'post' => array(
-//                'type'    => 'segment',
-//                // Configure the route itself
-//                'options' => array(
-//                    'route'    => '/post[/:action][/:id]',
-//                    'constraints' => array(
-//                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                        'id'     => '[0-9]+',
-//                    ),
-//                    'defaults' => array(
-//                        'controller' => 'Blog\Controller\Post',
-//                        'action'     => 'index',
-//                    ),
-//                ),
-//            ),
-//        ),
-        //Router for AdminController
-        'routes' => array(
-            // Define a new route called "blog"
             'admin' => array(
                 'type'    => 'segment',
                 // Configure the route itself
@@ -86,10 +62,6 @@ return array(
                     ),
                 ),
             ),
-        ),
-
-        'routes' => array(
-            // Define a new route called "blog"
             'posts' => array(
                 'type'    => 'segment',
                 // Configure the route itself

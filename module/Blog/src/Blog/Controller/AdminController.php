@@ -85,20 +85,30 @@ class AdminController extends AbstractActionController{
 
     public function formatTargetPosts($array){
 
-        $contentInUl = '';
-
+        $contentInUl = "<table class='table table-striped'><thead><th>Post_Id</th><th>Post_Create_Date</th><th>Post_Title</th></thead>";
+//$contentInUl = '';
             foreach ($array as $item){
-                $contentInUl .= "<li>
-                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><h4>".$item['post_title']."</h4></a><br />
-                            <p class='contentUnderTitle'>
-                                <span class='glyphicon glyphicon-time'></span>
-                                <b>Posted on</b> ".$item['post_create_time']." <b>
-                                   &nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:</b>
-                                <a>".$item['post_category']."</a>
-                                    &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
-                                <b>Posted by</b> ".$item['user_name']."</p>
-                        </li><br />";
+//
+                $contentInUl .= "<tr>
+                                   <td>".$item['post_id']."</td><td>".$item['post_create_time']."</td><td>".$item['post_title']."</td>
+                                   <td><button><i class=\"fa fa-wrench\" aria-hidden=\"true\" style='color:blue'></i></button></td>
+                                   <td><button><i class=\"fa fa-rocket\" aria-hidden=\"true\" style='color:green'></i></button></td>
+                                    <td><button><i class=\"fa fa-times\" aria-hidden=\"true\" style='color:red'></i></button></td>
+                                </tr>";
+
+
+//                $contentInUl .= "<li>
+//                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><h4>".$item['post_title']."</h4></a><br />
+//                            <p class='contentUnderTitle'>
+//                                <span class='glyphicon glyphicon-time'></span>
+//                                <b>Posted on</b> ".$item['post_create_time']." <b>
+//                                   &nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:</b>
+//                                <a>".$item['post_category']."</a>
+//                                    &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
+//                                <b>Posted by</b> ".$item['user_name']."</p>
+//                        </li><br />";
             }
+        $contentInUl .= "</table>";
 
         return $contentInUl;
     }
