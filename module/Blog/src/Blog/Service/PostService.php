@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-
+        
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -22,8 +22,7 @@ class PostService implements PostServiceInterface{
     }
 
     public function findAllPosts($pageIndex, $category, $pattern){
-//        ORDER BY post_create_time DESC
-//        TODO: Implement findAllPosts() method.
+
         if(!empty($pattern)){
             $sql_query = "SELECT * 
                       FROM blog_post
@@ -58,6 +57,7 @@ class PostService implements PostServiceInterface{
 //        $endContent = $this->formatTargetPosts($formatArray);
         return $formatArray;
     }
+
     public function findPost($id){
         // TODO: Implement findPost() method.
         $sql_query = "SELECT post_article 

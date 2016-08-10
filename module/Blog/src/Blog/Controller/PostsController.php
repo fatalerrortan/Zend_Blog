@@ -13,11 +13,13 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 
-class PostController extends AbstractActionController{
+class PostsController extends AbstractActionController
+{
 
     protected $postService;
 
-    public function __construct(PostServiceInterface $postService){
+    public function __construct(PostServiceInterface $postService)
+    {
 
         $this->postService = $postService;
     }
@@ -84,7 +86,7 @@ class PostController extends AbstractActionController{
         if($flag == true){
             foreach ($array as $item){
                 $contentInUl .= "<li>
-                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><h4>".$item['post_title']."</h4></a><br />
+                            <i class=\"fa fa-plug\" aria-hidden=\"true\"></i> <a href='http://www.xulin-tan.de/blog/public/posts/article?id=".$item['post_id']."'><h4>".$item['post_title']."</h4></a><br />
                             <p class='contentUnderTitle'>
                                 <span class='glyphicon glyphicon-time'></span> 
                                 <b>Posted on</b> ".$item['post_create_time']." <b>
@@ -93,11 +95,11 @@ class PostController extends AbstractActionController{
                                     &nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>
                                 <b>Posted by</b> ".$item['user_name']."</p>
                         </li><br />";
-                }
+            }
         }else{
             foreach ($array as $item){
                 $contentInUl .= "<li>
-                                    <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'>
+                                    <a href='http://www.xulin-tan.de/blog/public/posts/article?id=".$item['post_id']."'>
                                     <i class=\"fa fa-bell-o\" aria-hidden=\"true\"></i>
                                     <h5>".substr($item['post_title'],0,42)."...</h5></a>
                                 </li>";
