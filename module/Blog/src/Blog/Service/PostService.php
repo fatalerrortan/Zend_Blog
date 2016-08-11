@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-
+    
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -60,7 +60,7 @@ class PostService implements PostServiceInterface{
 
     public function findPost($id){
         // TODO: Implement findPost() method.
-        $sql_query = "SELECT post_article 
+        $sql_query = "SELECT post_article, post_title 
                       FROM blog_post
                       WHERE post_id = '$id'";
         $query = mysqli_query($this->postMapper, $sql_query);

@@ -49,7 +49,7 @@ class loadCategory extends AbstractHelper{
                 $html .= " <ul class=\"dropdown-menu\">";
                 foreach ($value as $item){
                     $html .= "<li>";
-                    $html .= "<a href='http://www.xulin-tan.de/blog/public/post/index?category=".$item."'>".$item."</a>";
+                    $html .= "<a href='http://www.xulin-tan.de/blog/public/posts/index?category=".$item."'>".$item."</a>";
                     $html .= "</li>";
                 }
                 $html .= "</ul></li>";

@@ -1,0 +1,15 @@
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+<div class="row">
+    <div class="col-md-12">
+        <textarea id="edited_text"><?php echo $this->toEdit; ?></textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1 col-md-offset-10">
+        <button class="alert-success">Submit</button>
+    </div>
+    <div class="col-md-1">
+        <button class="alert-info">Reset</button>
+    </div>
+</div>

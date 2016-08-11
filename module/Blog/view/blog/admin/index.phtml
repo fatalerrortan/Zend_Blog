@@ -5,6 +5,21 @@
 
             window.location.replace('http://www.xulin-tan.de/blog/public/admin/login');
         });
+        $('#admin_select_menu').change(function () {
+            var selected = $('#admin_select_menu option:selected').val();
+            $.ajax({
+                type:"GET",
+                url:'http://www.xulin-tan.de/blog/public/admin/ajax?category='+ selected,
+                dataType:"text",
+                contentType:false,
+                cache:false,
+                processData:false,
+//                data:{ page: pageIndex},
+                success:function(responseText){
+                    $("#admin_ajax_content").html(responseText);
+                }
+            });
+        });
     });
 </script>
 
