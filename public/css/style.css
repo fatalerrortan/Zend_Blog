@@ -38,7 +38,7 @@ div.container a.brand {
 
 /*Xulin Edited*/
 
-h4, h5 {
+h3, h4, h5 {
     display: inline;
 }
 
@@ -56,5 +56,11 @@ p.contentUnderTitle{
 }
 
 #sidebar_homepage{
-    background: url("../img/blog/terminal.png") transparent;
+    background: url("../img/blog/terminal.png") transparent no-repeat;
+}
+
+#article_dialog{
+
+    background: url("../img/blog/terminal.png") transparent no-repeat;
+    background-size: 1000px 700px;
 }

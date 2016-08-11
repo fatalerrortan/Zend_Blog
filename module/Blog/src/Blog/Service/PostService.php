@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-    
+        
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -60,13 +60,14 @@ class PostService implements PostServiceInterface{
 
     public function findPost($id){
         // TODO: Implement findPost() method.
-        $sql_query = "SELECT post_article, post_title 
+        $sql_query = "SELECT *
                       FROM blog_post
                       WHERE post_id = '$id'";
         $query = mysqli_query($this->postMapper, $sql_query);
-        $result = mysqli_fetch_all($query);
+        $urResult = mysqli_fetch_all($query);
+        $keys = array('post_id', 'post_category', 'post_title', 'post_article', 'post_keyword', 'post_status', 'user_name', 'post_create_time', 'post_update_time', 'post_comment_id');
 
-        return $result;
+        return $this->setKeyForSubArray($keys, $urResult);
     }
 
     public function userMapping($username, $password){

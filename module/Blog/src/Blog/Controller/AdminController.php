@@ -68,13 +68,16 @@ class AdminController extends AbstractActionController{
     public function editAction(){
 
         $post_id = $this->params()->fromQuery('post_id');
-//        $resultArray = $this->formatTargetPosts($this->postService->findPost($post_id),false);
-        $resultArray = $this->postService->findPost($post_id)[0][0];
-        $view = new ViewModel(array(
-            'toEdit' => $resultArray,
-        ));
-
-        return $view;
+        if(!empty($post_id)){
+            $resultArray = $this->postService->findPost($post_id)[0][0];
+            $view = new ViewModel(array(
+                'toEdit' => $resultArray,
+            ));
+            return $view;
+        }else{
+            $view = new ViewModel();
+            return $view;
+        }
     }
 
     public function pushAction($post_id){

@@ -1,3 +1,23 @@
 <?php
-    echo print_r($this->article[0][0]);
+//    echo $this->article[0][1];
+     //echo print_r($this->article[0][0]);
+//   echo "<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>
+//                                <span>".$item['post_create_time']."</span>
+//                                <i class=\"fa fa-bell\" aria-hidden=\"true\"></i>
+//                                <h4>".$item['post_title']."</h4>
+//                                <b>&nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:<a>".$category."</a></b>";
+//print_r($this->article[0]);
 ?>
+
+<div class="row">
+    <i class="fa fa-bell" aria-hidden="true"></i> &nbsp;<h3><?php echo $this->article[0]['post_title'] ?></h3>
+    <hr />
+    <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;<?php echo $this->article[0]['post_create_time'] ?>
+    &nbsp;<i class="fa fa-tags" aria-hidden="true"></i>&nbsp;<?php echo $this->article[0]['post_category'] ?>
+    &nbsp;<i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Posted by</b> <?php echo $this->article[0]['user_name'] ?></p>
+</div>
+<hr />
+<div class="row" id="article_dialog">
+    <br /><br /><br />
+    <?php echo $this->article[0]['post_article'] ?>
+</div>
