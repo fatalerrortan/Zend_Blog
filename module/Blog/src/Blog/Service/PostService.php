@@ -81,6 +81,16 @@ class PostService implements PostServiceInterface{
         else{return true;}
     }
 
+    public function dbUpdate($id, $content){
+
+        $query = "UPDATE blog_post
+                  SET post_article = '$content'
+                  WHERE post_id = '$id'";
+        if( mysqli_query($this->postMapper, $query)){
+            return true;
+        }else{return false;}
+    }
+
     public function insertTest(){
         $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
 //        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";

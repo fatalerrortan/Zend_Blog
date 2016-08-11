@@ -69,9 +69,11 @@ class AdminController extends AbstractActionController{
 
         $post_id = $this->params()->fromQuery('post_id');
         if(!empty($post_id)){
-            $resultArray = $this->postService->findPost($post_id)[0][0];
+            $post_article = $this->postService->findPost($post_id)[0]['post_article'];
+            $post_id = $this->postService->findPost($post_id)[0]['post_id'];
             $view = new ViewModel(array(
-                'toEdit' => $resultArray,
+                'toEdit' => $post_article,
+                'postId' => $post_id
             ));
             return $view;
         }else{
@@ -81,6 +83,34 @@ class AdminController extends AbstractActionController{
     }
 
     public function pushAction($post_id){
+
+
+    }
+
+    public function updateAction(){
+
+        $content = $this->params()->fromPost('updatedText');
+        $id = $this->params()->fromPost('updatedId');
+        if(!empty($content)){
+            if($this->postService->dbUpdate($id, $content)){
+                $response = $this->getResponse();
+                $response->setContent('Updated!');
+                return $response;
+                }else{
+                    $response = $this->getResponse();
+                    $response->setContent('failed Update!');
+
+                return $response;
+            }
+        }else{
+            $response = $this->getResponse();
+            $response->setContent('No Data Received!');
+
+            return $response;
+        }
+    }
+
+    public function saveAction(){
 
 
     }
@@ -125,7 +155,7 @@ class AdminController extends AbstractActionController{
             foreach ($array as $item){
 //
                 $contentInUl .= "<tr>
-                                   <td>".$item['post_id']."</td><td>".$item['post_create_time']."</td><td>".$item['post_title']."</td>
+                                   <td>".$item['post_id']."</td><td>".$item['post_create_time']."</td><td><a href='http://www.xulin-tan.de/blog/public/posts/article?id=".$item['post_id']."'>".$item['post_title']."</a></td>
                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/edit?post_id=".$item['post_id']."'><button><i class=\"fa fa-wrench\" aria-hidden=\"true\" style='color:blue'></i></button></a></td>
                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/push?post_id=".$item['post_id']."'><button><i class=\"fa fa-rocket\" aria-hidden=\"true\" style='color:green'></i></button></a></td>
                                     <td><a href='http://www.xulin-tan.de/blog/public/admin/drop?post_id=".$item['post_id']."'><button><i class=\"fa fa-times\" aria-hidden=\"true\" style='color:red'></i></button></a></td>

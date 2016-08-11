@@ -22,5 +22,7 @@ interface PostServiceInterface{
      */
     public function findPost($id);
 
+    public function dbUpdate($id, $content);
+
     public function userMapping($username, $password);
 }

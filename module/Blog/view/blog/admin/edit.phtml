@@ -1,5 +1,37 @@
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
+<script>
+    $(document).ready(function () {
+        $('#edit_button_submit').click(function () {
+            if (confirm('Finish Edit?')) {
+
+                var updatedId = $('#post_id').val();
+                tinyMCE.triggerSave();
+                var content =$('#edited_text').val();
+                var postData = new FormData();
+                postData.append("updatedText", content);
+                postData.append("updatedId", updatedId);
+
+                $.ajax({
+                    type:"post",
+                    url:'http://www.xulin-tan.de/blog/public/admin/update',
+                    dataType:"text",
+                    contentType:false,
+                    cache:false,
+                    processData:false,
+                    data:postData,
+                    success:function(responseText){
+                        alert(responseText);
+                        window.location.replace('http://www.xulin-tan.de/blog/public/admin/index');
+                    }
+                });
+            } else {
+                return false;
+            }
+        });
+    });
+</script>
+<input id="post_id" type="hidden" value="<?php echo $this->postId; ?>" />
 <div class="row">
     <div class="col-md-12">
         <textarea id="edited_text"><?php echo $this->toEdit; ?></textarea>
@@ -7,9 +39,9 @@
 </div>
 <div class="row">
     <div class="col-md-1 col-md-offset-10">
-        <button class="alert-success">Submit</button>
+        <button id="edit_button_submit" class="alert-success">Submit</button>
     </div>
     <div class="col-md-1">
-        <button class="alert-info">Reset</button>
+        <button id="edit_button_reset" class="alert-info">Reset</button>
     </div>
 </div>

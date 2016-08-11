@@ -56,7 +56,7 @@ p.contentUnderTitle{
 }
 
 #sidebar_homepage{
-    background: url("../img/blog/terminal.png") transparent no-repeat;
+    background: url("../img/blog/terminal.png") transparent;
 }
 
 #article_dialog{
