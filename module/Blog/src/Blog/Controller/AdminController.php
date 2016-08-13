@@ -90,9 +90,19 @@ class AdminController extends AbstractActionController{
         if($this->postService->dbDelete($post_id)){
             header('Location: http://www.xulin-tan.de/blog/public/admin/index');
             echo "works";
-//            echo "<script>window.location.replace('Location: http://www.xulin-tan.de/blog/public/admin/index');</script>";
         }else{
-            echo 'failed';
+            echo 'Delete failed';
+        }
+    }
+
+    public function pushAction($post_id){
+
+        $post_id = $this->params()->fromQuery('post_id');
+        if($this->postService->dbPush($post_id)){
+            header('Location: http://www.xulin-tan.de/blog/public/admin/index');
+            echo "works";
+        }else{
+            echo 'Push failed';
         }
     }
 
@@ -169,11 +179,6 @@ class AdminController extends AbstractActionController{
         $session->offsetSet('session_status', $username);
 
         return true;
-    }
-
-    public function adminpostAction($category){
-
-
     }
 
     public function formatTargetPosts($array,$flag){

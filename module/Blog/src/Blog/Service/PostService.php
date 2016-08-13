@@ -109,6 +109,15 @@ class PostService implements PostServiceInterface{
 
     public function dbPush($post_id){
 
+        $Current_timestamp = date("Y-m-d H:i:s");
+        $query = "UPDATE blog_post
+                  SET post_create_time = '$Current_timestamp'  
+                  WHERE post_id = '$post_id'";
+        if( mysqli_query($this->postMapper, $query)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function dbDelete($post_id){
