@@ -12,10 +12,12 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-        $host_name  = "db629553808.db.1and1.com";
-        $database   = "db629553808";
-        $user_name  = "dbo629553808";
-        $password   = "txl881706";
+//        file_put_contents('./test.log',__DIR__);
+        $local = explode(',', file_get_contents('/homepages/2/d558391257/htdocs/local.txt'));
+        $host_name  = $local[0];
+        $database   = $local[1];
+        $user_name  = $local[2];
+        $password   = $local[3];
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -92,7 +94,6 @@ class PostService implements PostServiceInterface{
         if( mysqli_query($this->postMapper, $query)){
             return true;
         }else{
-            file_put_contents('./xulin.log',mysqli_error($this->postMapper),FILE_APPEND);
             return false;
         }
     }
