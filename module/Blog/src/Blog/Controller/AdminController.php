@@ -44,8 +44,6 @@ class AdminController extends AbstractActionController{
                 $adminContent->setTemplate('template/content/adminContent.phtml');
                 $view->addChild($adminContent, '_admin_content');
                 //        TODO: Implement Admin Content.
-
-
             }else{
                 $error_message = new ViewModel(array());
                 $error_message->setTemplate('template/error/error_admin_login.phtml');
@@ -86,9 +84,16 @@ class AdminController extends AbstractActionController{
         }
     }
 
-    public function pushAction($post_id){
+    public function deleteAction($post_id){
 
-
+        $post_id = $this->params()->fromQuery('post_id');
+        if($this->postService->dbDelete($post_id)){
+            header('Location: http://www.xulin-tan.de/blog/public/admin/index');
+            echo "works";
+//            echo "<script>window.location.replace('Location: http://www.xulin-tan.de/blog/public/admin/index');</script>";
+        }else{
+            echo 'failed';
+        }
     }
 
     public function updateAction(){
@@ -144,11 +149,6 @@ class AdminController extends AbstractActionController{
 
     }
 
-    public function dropAction($post_id){
-
-
-    }
-
     public function loginAction(){
 
         $view = new ViewModel();
@@ -187,7 +187,7 @@ class AdminController extends AbstractActionController{
                                    <td>".$item['post_id']."</td><td>".$item['post_create_time']."</td><td><a href='http://www.xulin-tan.de/blog/public/posts/article?id=".$item['post_id']."'>".$item['post_title']."</a></td>
                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/edit?post_id=".$item['post_id']."'><button><i class=\"fa fa-wrench\" aria-hidden=\"true\" style='color:blue'></i></button></a></td>
                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/push?post_id=".$item['post_id']."'><button><i class=\"fa fa-rocket\" aria-hidden=\"true\" style='color:green'></i></button></a></td>
-                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/drop?post_id=".$item['post_id']."'><button><i class=\"fa fa-times\" aria-hidden=\"true\" style='color:red'></i></button></a></td>
+                                    <td><a href='http://www.xulin-tan.de/blog/public/admin/delete?post_id=".$item['post_id']."'><button><i class=\"fa fa-times\" aria-hidden=\"true\" style='color:red'></i></button></a></td>
                                 </tr>";
             }
         $contentInUl .= "</table>";

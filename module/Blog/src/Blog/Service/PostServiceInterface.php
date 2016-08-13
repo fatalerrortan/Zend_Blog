@@ -24,6 +24,8 @@ interface PostServiceInterface{
 
     public function dbUpdate($id, $content, $category, $keyword, $title);
     public function dbSave($content, $title, $category, $tags);
+    public function dbPush($post_id);
+    public function dbDelete($post_id);
 
     public function userMapping($username, $password);
 }

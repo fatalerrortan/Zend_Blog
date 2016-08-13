@@ -1,6 +1,6 @@
 <?php
 namespace Blog\Service;
-use Blog\Model\Post;
+//use Blog\Model\Post;
 class PostService implements PostServiceInterface{
     /**
      * @var \Blog\Mapper\PostMapperInterface
@@ -102,6 +102,19 @@ class PostService implements PostServiceInterface{
 
         $query = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
                   VALUES ('$category', '$title', '$content', '$tags', 'active', 'Xulin Tan')";
+        if( mysqli_query($this->postMapper, $query)){
+            return true;
+        }else{return false;}
+    }
+
+    public function dbPush($post_id){
+
+    }
+
+    public function dbDelete($post_id){
+
+        $query = "DELETE FROM blog_post
+                WHERE post_id = '$post_id'";
         if( mysqli_query($this->postMapper, $query)){
             return true;
         }else{return false;}
