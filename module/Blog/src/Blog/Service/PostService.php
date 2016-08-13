@@ -12,7 +12,10 @@ class PostService implements PostServiceInterface{
 
     public function __construct(){
 
-        
+        $host_name  = "db629553808.db.1and1.com";
+        $database   = "db629553808";
+        $user_name  = "dbo629553808";
+        $password   = "txl881706";
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
             die('Connect Error!');
@@ -81,29 +84,41 @@ class PostService implements PostServiceInterface{
         else{return true;}
     }
 
-    public function dbUpdate($id, $content){
+    public function dbUpdate($id, $content, $category, $keyword, $title){
 
         $query = "UPDATE blog_post
-                  SET post_article = '$content'
+                  SET post_article = '$content', post_category = '$category', post_keyword = '$keyword', post_title = '$title'  
                   WHERE post_id = '$id'";
+        if( mysqli_query($this->postMapper, $query)){
+            return true;
+        }else{
+            file_put_contents('./xulin.log',mysqli_error($this->postMapper),FILE_APPEND);
+            return false;
+        }
+    }
+
+    public function dbSave($content, $title, $category, $tags){
+
+        $query = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
+                  VALUES ('$category', '$title', '$content', '$tags', 'active', 'Xulin Tan')";
         if( mysqli_query($this->postMapper, $query)){
             return true;
         }else{return false;}
     }
 
-    public function insertTest(){
-        $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
-//        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
-        for ($i=0; $i <= 3; $i++){
-            $sql = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
-                  VALUES ('database', 'postTitle".$i."', '$test', 'database', 'active', 'Xulin Tan')";
-            if(!mysqli_query($this->postMapper, $sql)){
-                die(mysqli_error($this->postMapper));
-            }
-        }
-        mysqli_close($this->postMapper);
-        return 'down';
-    }
+//    public function insertTest(){
+//        $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
+////        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";
+//        for ($i=0; $i <= 3; $i++){
+//            $sql = "INSERT INTO blog_post (post_category, post_title, post_article, post_keyword, post_status, user_name)
+//                  VALUES ('database', 'postTitle".$i."', '$test', 'database', 'active', 'Xulin Tan')";
+//            if(!mysqli_query($this->postMapper, $sql)){
+//                die(mysqli_error($this->postMapper));
+//            }
+//        }
+//        mysqli_close($this->postMapper);
+//        return 'down';
+//    }
 
     public function setKeyForSubArray($keys, $urArray){
         $formatArray = array();

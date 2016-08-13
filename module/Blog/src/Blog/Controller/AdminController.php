@@ -22,7 +22,7 @@ class AdminController extends AbstractActionController{
         $username = $this->params()->fromPost('username');
         $password = $this->params()->fromPost('password');
 
-        if(empty($username) && empty($password)){
+        if((empty($username)) && (empty($password))){
 
             $session = new Container('user_session');
             $pattern = $session->offsetGet('session_status');
@@ -69,11 +69,15 @@ class AdminController extends AbstractActionController{
 
         $post_id = $this->params()->fromQuery('post_id');
         if(!empty($post_id)){
-            $post_article = $this->postService->findPost($post_id)[0]['post_article'];
-            $post_id = $this->postService->findPost($post_id)[0]['post_id'];
+
             $view = new ViewModel(array(
-                'toEdit' => $post_article,
-                'postId' => $post_id
+                'post_article' => $this->postService->findPost($post_id)[0]['post_article'],
+                'post_id' => $this->postService->findPost($post_id)[0]['post_id'],
+                'post_create_time' => $this->postService->findPost($post_id)[0]['post_create_time'],
+                'post_category' => $this->postService->findPost($post_id)[0]['post_category'],
+                'user_name' => $this->postService->findPost($post_id)[0]['user_name'],
+                'post_keyword' => $this->postService->findPost($post_id)[0]['post_keyword'],
+                'post_title' => $this->postService->findPost($post_id)[0]['post_title'],
             ));
             return $view;
         }else{
@@ -91,8 +95,11 @@ class AdminController extends AbstractActionController{
 
         $content = $this->params()->fromPost('updatedText');
         $id = $this->params()->fromPost('updatedId');
+        $post_category = $this->params()->fromPost('post_category');
+        $post_keytags = $this->params()->fromPost('post_keytags');
+        $post_title = $this->params()->fromPost('post_title');
         if(!empty($content)){
-            if($this->postService->dbUpdate($id, $content)){
+            if($this->postService->dbUpdate($id, $content, $post_category, $post_keytags, $post_title)){
                 $response = $this->getResponse();
                 $response->setContent('Updated!');
                 return $response;
@@ -111,6 +118,28 @@ class AdminController extends AbstractActionController{
     }
 
     public function saveAction(){
+
+        $content = $this->params()->fromPost('updatedText');
+        $title = $this->params()->fromPost('post_title');
+        $category = $this->params()->fromPost('post_category');
+        $tags = $this->params()->fromPost('post_keytags');
+        if(!empty($content)){
+            if($this->postService->dbSave($content, $title, $category, $tags)){
+                $response = $this->getResponse();
+                $response->setContent('Saved!');
+                return $response;
+            }else{
+                $response = $this->getResponse();
+                $response->setContent('failed Save!');
+
+                return $response;
+            }
+        }else{
+            $response = $this->getResponse();
+            $response->setContent('No Data Received!');
+
+            return $response;
+        }
 
 
     }

@@ -2,46 +2,113 @@
 <script>tinymce.init({ selector:'textarea' });</script>
 <script>
     $(document).ready(function () {
+
+        var selected_id = $('#selected_id').val();
+        $('#post_category option').each(function () {
+            if($(this).val() == selected_id){
+                $(this).prop('selected', true);
+                return false;
+            }
+        });
+
         $('#edit_button_submit').click(function () {
             if (confirm('Finish Edit?')) {
 
                 var updatedId = $('#post_id').val();
-                tinyMCE.triggerSave();
-                var content =$('#edited_text').val();
-                var postData = new FormData();
-                postData.append("updatedText", content);
-                postData.append("updatedId", updatedId);
-
-                $.ajax({
-                    type:"post",
-                    url:'http://www.xulin-tan.de/blog/public/admin/update',
-                    dataType:"text",
-                    contentType:false,
-                    cache:false,
-                    processData:false,
-                    data:postData,
-                    success:function(responseText){
-                        alert(responseText);
-                        window.location.replace('http://www.xulin-tan.de/blog/public/admin/index');
-                    }
-                });
+                if(updatedId != ''){
+                    tinyMCE.triggerSave();
+                    var content =$('#edited_text').val();
+                    var postData = new FormData();
+                    postData.append("updatedText", content);
+                    postData.append("updatedId", updatedId);
+                    postData.append("post_category", $("#post_category option:selected").val());
+                    postData.append("post_keytags", $("#post_keytags").val());
+                    postData.append("post_title", $("#post_title").val());
+                    $.ajax({
+                        type:"post",
+                        url:'http://www.xulin-tan.de/blog/public/admin/update',
+                        dataType:"text",
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+                        data:postData,
+                        success:function(responseText){
+                            alert(responseText);
+                            window.location.replace('http://www.xulin-tan.de/blog/public/admin/index');
+                        }
+                    });
+                }else {
+//                    $("#new_post_flag").css( "display", "show");
+                    tinyMCE.triggerSave();
+                    var content =$('#edited_text').val();
+                    var postData = new FormData();
+                    postData.append("updatedText", content);
+                    postData.append("post_title", $("#post_title").val());
+                    postData.append("post_category", $("#post_category option:selected").val());
+                    postData.append("post_keytags", $("#post_keytags").val());
+                    $.ajax({
+                        type:"post",
+                        url:'http://www.xulin-tan.de/blog/public/admin/save',
+                        dataType:"text",
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+                        data:postData,
+                        success:function(responseText){
+                            alert(responseText);
+                            window.location.replace('http://www.xulin-tan.de/blog/public/admin/index');
+                        }
+                    });
+                }
             } else {
                 return false;
             }
         });
     });
 </script>
-<input id="post_id" type="hidden" value="<?php echo $this->postId; ?>" />
+<input id="post_id" type="hidden" value="<?php echo $this->post_id; ?>" />
+<input id="selected_id" type="hidden" value="<?php echo $this->post_category; ?>" />
+<hr />
+<div class="row" id="new_post_flag">
+    <form>
+        <div class="form-group">
+            <label for="post_title">Post Title</label>
+            <input type="text" class="form-control" id="post_title" placeholder="Post Title" value="<?php echo $this->post_title; ?>">
+        </div>
+        <div class="form-group">
+            <label for="post_keytags">Key Tags (tag1,tag2,tag3,...)</label>
+            <input type="text" class="form-control" id="post_keytags" placeholder="Post Key Tags" value="<?php echo $this->post_keyword; ?>">
+        </div>
+        <div class="form-group">
+            <label for="post_category">Post Category</label>
+            <select multiple class="form-control" id="post_category">
+                <option value="php">PHP</option>
+                <option value="php,magento">Magento</option>
+                <option value="php,zendframework">Zend framework</option>
+                <option value="javascript">Javascript</option>
+                <option value="javascript,jquery">Jquery</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="database">Database</option>
+                <option value="linux,desktop">Linux Desktop</option>
+                <option value="linux,server">Linux Server</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+        </div>
+    </form>
+</div>
+<hr />
 <div class="row">
     <div class="col-md-12">
-        <textarea id="edited_text"><?php echo $this->toEdit; ?></textarea>
+        <textarea id="edited_text"><?php echo $this->post_title; ?></textarea>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-1 col-md-offset-10">
+    <div class="col-md-1 col-md-offset-11">
         <button id="edit_button_submit" class="alert-success">Submit</button>
-    </div>
-    <div class="col-md-1">
-        <button id="edit_button_reset" class="alert-info">Reset</button>
     </div>
 </div>

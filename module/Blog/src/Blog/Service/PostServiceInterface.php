@@ -22,7 +22,8 @@ interface PostServiceInterface{
      */
     public function findPost($id);
 
-    public function dbUpdate($id, $content);
+    public function dbUpdate($id, $content, $category, $keyword, $title);
+    public function dbSave($content, $title, $category, $tags);
 
     public function userMapping($username, $password);
 }
