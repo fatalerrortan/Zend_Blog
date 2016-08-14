@@ -12,7 +12,8 @@ return array(
 //            'Blog\Controller\Post' => 'Blog\Controller\PostController',
 //        ),
         'factories' => array(
-            'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
+//            'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
+            'Blog\Controller\Index' => 'Blog\Factory\MultiServicesFactory',
             'Blog\Controller\Admin' => 'Blog\Factory\AdminControllerFactory',
             'Blog\Controller\Posts' => 'Blog\Factory\PostsControllerFactory'
         )
@@ -20,11 +21,14 @@ return array(
 
     'service_manager' => array(
         'invokables' => array(
-            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService'
+            'Blog\Service\PostServiceInterface' => 'Blog\Service\PostService',
+            'Blog\Service\EmailServiceInterface' => 'Blog\Service\EmailService',
+//            'Blog\Service\MultiServices' => 'Blog\Service\MultiServices'
         ),
         'factories' => array(
             'Zend\Session\SessionManager' => 'Zend\Session\SessionManagerFactory',
             'Zend\Session\Config\ConfigInterface' => 'Zend\Session\Service\SessionConfigFactory',
+//            'Blog\Service\MultiServices' => 'Blog\Factory\MultiServicesFactory'
         )
     ),
 // This lines opens the configuration for the RouteManager

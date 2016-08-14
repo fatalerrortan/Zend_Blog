@@ -8,6 +8,7 @@
 namespace Blog\Controller;
 
 use Blog\Service\PostServiceInterface;
+use Blog\Service\EmailServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -16,14 +17,17 @@ class IndexController extends AbstractActionController{
 
     //@var \Blog\Service\PostServiceInterface
     protected $postService;
+    protected $emailService;
 
-    public function __construct(PostServiceInterface $postService){
+    public function __construct(PostServiceInterface $postService, EmailServiceInterface $emailService){
 
         $this->postService = $postService;
+        $this->emailService = $emailService;
     }
 
     public function indexAction(){
 
+        echo $this->emailService->emailGenerate();
         $view = new ViewModel(array(
             'posts' => $this->postService->postMapper,
         ));
