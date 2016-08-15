@@ -155,8 +155,6 @@ class AdminController extends AbstractActionController{
 
             return $response;
         }
-
-
     }
 
     public function loginAction(){

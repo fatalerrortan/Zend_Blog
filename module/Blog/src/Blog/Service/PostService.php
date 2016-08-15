@@ -79,7 +79,7 @@ class PostService implements PostServiceInterface{
 
         $sql_query = "SELECT *
                       FROM blog_user
-                      WHERE user_name = '$username' AND user_password = '$password'";
+                      WHERE user_name = '$username' AND user_password = '$password' AND user_privilege = '0'";
         $query = mysqli_query($this->postMapper, $sql_query);
         $result = mysqli_fetch_all($query);
         if(empty($result)){return false;}
@@ -129,6 +129,14 @@ class PostService implements PostServiceInterface{
         }else{return false;}
     }
 
+    public function userInsert($user_email){
+
+        $query = "INSERT INTO blog_user (user_name, user_privilege)
+                  VALUES ('$user_email','2')";
+        if( mysqli_query($this->postMapper, $query)){
+            return 'Got it :) you will receive a Email soon!';
+        }else{return false;}
+    }
 //    public function insertTest(){
 //        $test = file_get_contents($_SERVER['DOCUMENT_ROOT']."/blog/public/test/insertTest.txt");
 ////        $test = "dsfdsfjdlskfjsdklfjsdlfjgjdlgdflgkjhflkdfjhgdkljfghkjghdfkjghfgkljh";

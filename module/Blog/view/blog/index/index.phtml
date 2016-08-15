@@ -1,3 +1,25 @@
+<script>
+    $(document).ready(function () {
+        $('#join').click(function () {
+            var email = $('#newsletter').val();
+            var postData = new FormData();
+            postData.append("user_email", email);
+            $.ajax({
+                type:"POST",
+                url:"http://www.xulin-tan.de/blog/public/blog/userinit",
+                dataType:"text",
+                contentType:false,
+                cache:false,
+                processData:false,
+                data:postData,
+                success:function(responseText){
+                    alert(responseText);
+//                    return false;
+                }
+            });
+        });
+    });
+</script>
 <br />
 <br />
 <br />
@@ -42,7 +64,7 @@
                 <label for="newsletter" >While(like($posts)){ <br />$YOU = new Action("handsome"); $YOU->getNewsletter("Email");}</label>
                 <div class="well">
                     <div class="col-md-10"><input class="form-control" id="newsletter" type="text" placeholder="Getting Newsletter by Your Email => youremail@email.com" /></div>
-                    <button type="button" class="btn btn-success">Join me</button>
+                    <button type="button" class="btn btn-success" id="join">Join me</button>
                 </div>
             </div>
     <div class="col-md-3"></div>

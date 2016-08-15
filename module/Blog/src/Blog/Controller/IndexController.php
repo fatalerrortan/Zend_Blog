@@ -27,7 +27,6 @@ class IndexController extends AbstractActionController{
 
     public function indexAction(){
 
-        echo $this->emailService->emailGenerate();
         $view = new ViewModel(array(
             'posts' => $this->postService->postMapper,
         ));
@@ -43,6 +42,21 @@ class IndexController extends AbstractActionController{
         $view->addChild($sidebarView, '_sidebarView');
 
         return $view;
+    }
+
+    public function userinitAction(){
+
+        $response = $this->getResponse();
+        $user_email = $this->params()->fromPost('user_email');
+        $result = $this->postService->userInsert($user_email);
+        if($result){
+            $response->setContent($result);
+            $this->emailService->emailGenerate($user_email, 'user_register_email');
+        }else{
+            $response->setContent('Failed');
+        }
+
+        return $response;
     }
 
     public function formatTargetPosts($array){
