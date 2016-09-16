@@ -67,7 +67,7 @@ class IndexController extends AbstractActionController{
                 $category = str_replace(',','',strstr($item['post_category'],','));
             }else{$category = $item['post_category'];}
             $contentInUl .= "<li><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>
-                                <a href='http://www.xulin-tan.de/blog/public/post/article?id=".$item['post_id']."'><span>".$item['post_create_time']."</span>
+                                <a href='http://www.xulin-tan.de/blog/public/posts/article?id=".$item['post_id']."'><span>".$item['post_create_time']."</span>
                                 <i class=\"fa fa-bell\" aria-hidden=\"true\"></i>
                                 <h4>".$item['post_title']."</h4></a>
                                 <b>&nbsp;<i class=\"fa fa-tags\" aria-hidden=\"true\"></i>Category:<a>".$category."</a></b>

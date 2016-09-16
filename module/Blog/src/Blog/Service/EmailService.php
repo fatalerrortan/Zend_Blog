@@ -1,10 +1,18 @@
 <?php
 namespace Blog\Service;
 
+//use Blog\Service\PostServiceInterface;
 //use Blog\Model\Post;
 class EmailService implements EmailServiceInterface{
 
-    public function emailGenerate($targetUser, $flag){
+//    protected $postService;
+
+//    public function __construct(PostServiceInterface $postService){
+//
+//        $this->postService = $postService;
+//    }
+
+    public function emailGenerate($targetUser, $title, $flag){
 
         switch ($flag) {
             case "user_register_email":
@@ -13,7 +21,7 @@ class EmailService implements EmailServiceInterface{
                 }
                 break;
             case "user_new_post_email":
-                echo "Your favorite color is blue!";
+//                return $this->postEmail($title);
                 break;
             default:
                 echo "Your favorite color is neither red, blue, nor green!";
@@ -33,7 +41,8 @@ class EmailService implements EmailServiceInterface{
         return true;
     }
 
-    public function postEmail(){
+    public function postEmail($title){
 
+//        return $this->postService->test();
     }
 }

@@ -2,6 +2,7 @@
 namespace Blog\Controller;
 
 use Blog\Service\PostServiceInterface;
+use Blog\Service\EmailServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
@@ -11,9 +12,13 @@ Use Zend\Session\Config\SessionConfig;
 
 class AdminController extends AbstractActionController{
 
-    public function __construct(PostServiceInterface $postService){
+    protected $postService;
+    protected $emailService;
+
+    public function __construct(PostServiceInterface $postService, EmailServiceInterface $emailService){
 
         $this->postService = $postService;
+        $this->emailService = $emailService;
     }
 
     public function indexAction(){
@@ -140,6 +145,7 @@ class AdminController extends AbstractActionController{
         $tags = $this->params()->fromPost('post_keytags');
         if(!empty($content)){
             if($this->postService->dbSave($content, $title, $category, $tags)){
+                $this->emailService->emailGenerate('','','user_new_post_email');
                 $response = $this->getResponse();
                 $response->setContent('Saved!');
                 return $response;

@@ -13,8 +13,8 @@ return array(
 //        ),
         'factories' => array(
 //            'Blog\Controller\Index' => 'Blog\Factory\IndexControllerFactory',
-            'Blog\Controller\Index' => 'Blog\Factory\MultiServicesFactory',
-            'Blog\Controller\Admin' => 'Blog\Factory\AdminControllerFactory',
+            'Blog\Controller\Index' => 'Blog\Factory\IndexServicesControllerFactory',
+            'Blog\Controller\Admin' => 'Blog\Factory\AdminServicesControllerFactory',
             'Blog\Controller\Posts' => 'Blog\Factory\PostsControllerFactory'
         )
     ),

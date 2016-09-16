@@ -20,7 +20,7 @@ class PostService implements PostServiceInterface{
         $password   = $local[3];
         $connect = mysqli_connect($host_name, $user_name, $password, $database);
         if(mysqli_connect_errno()) {
-            die('Connect Error!');
+            die('Connect Error!!!');
         }else{
             $this->postMapper = $connect;
         }
@@ -158,5 +158,9 @@ class PostService implements PostServiceInterface{
             $formatArray[] = $newSubArray;
         }
         return $formatArray;
+    }
+
+    public function test(){
+         return 'test';
     }
 }
