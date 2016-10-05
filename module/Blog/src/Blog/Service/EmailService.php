@@ -1,16 +1,31 @@
 <?php
 namespace Blog\Service;
 
-//use Blog\Service\PostServiceInterface;
-//use Blog\Model\Post;
-class EmailService implements EmailServiceInterface{
+use Zend\EventManager\EventManagerInterface;
+use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerAwareInterface;
 
-//    protected $postService;
+class EmailService implements EmailServiceInterface, EventManagerAwareInterface{
 
-//    public function __construct(PostServiceInterface $postService){
-//
-//        $this->postService = $postService;
-//    }
+    protected $events;
+
+    public function setEventManager(EventManagerInterface $events){
+
+        $events->setIdentifiers(array(
+            __CLASS__,
+            get_called_class(),
+        ));
+        $this->events = $events;
+        return $this;
+    }
+
+    public function getEventManager(){
+
+        if (null === $this->events) {
+            $this->setEventManager(new EventManager());
+        }
+        return $this->events;
+    }
 
     public function emailGenerate($targetUser, $title, $flag){
 
@@ -43,6 +58,13 @@ class EmailService implements EmailServiceInterface{
 
     public function postEmail($title){
 
-//        return $this->postService->test();
+        echo "tigger a post!";
+        $this->getEventManager()->trigger(__FUNCTION__, $this, array('content' => $title));
+    }
+
+    public function sendTweet($param){
+
+        echo "trigger a Tweet";
+        $this->getEventManager()->trigger(__FUNCTION__, $this, array('content' => $param));
     }
 }

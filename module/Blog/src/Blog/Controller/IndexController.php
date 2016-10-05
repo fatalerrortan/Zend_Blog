@@ -13,6 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 
+
 class IndexController extends AbstractActionController{
 
     //@var \Blog\Service\PostServiceInterface
@@ -23,6 +24,7 @@ class IndexController extends AbstractActionController{
 
         $this->postService = $postService;
         $this->emailService = $emailService;
+
     }
 
     public function indexAction(){
@@ -41,6 +43,11 @@ class IndexController extends AbstractActionController{
         $layout->addChild($headerView, '_headerView');
         $view->addChild($sidebarView, '_sidebarView');
 
+//        $this->emailService->postEmail("this is a Post");
+        $this->emailService->sendTweet("this is a Tweet");
+
+//        $this->emialService->getEventManager()->attach('testEmail', function ($e) use ($log) {});
+
         return $view;
     }
 
@@ -48,14 +55,14 @@ class IndexController extends AbstractActionController{
 
         $response = $this->getResponse();
         $user_email = $this->params()->fromPost('user_email');
-        $result = $this->postService->userInsert($user_email);
-        if($result){
-            $response->setContent($result);
-            $this->emailService->emailGenerate($user_email, 'user_register_email');
-        }else{
-            $response->setContent('Failed');
-        }
-
+//        $result = $this->postService->userInsert($user_email);
+//        if($result){
+//            $response->setContent($result);
+//            $this->emailService->emailGenerate($user_email, 'user_register_email');
+//        }else{
+//            $response->setContent('Failed');
+//        }
+        $response->setContent($user_email);
         return $response;
     }
 

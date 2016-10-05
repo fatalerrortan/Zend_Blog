@@ -10,6 +10,7 @@ namespace Blog;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 //first we need to let the ModuleManager know that our module has configuration that it needs to load. "public function getConfig()"
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\Mvc\MvcEvent;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface{
 
@@ -44,4 +45,20 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface{
 //            )
 //        );
 //    }
+
+    public function onBootstrap(MvcEvent $event){
+
+        $eventManager       = $event->getApplication()->getEventManager();
+        $sharedEventManager = $eventManager->getSharedManager();
+
+        $sharedEventManager->attach('Blog\Service\EmailService', 'sendTweet', function($e) {
+
+            print_r($e->getParams('content'));
+        }, 100);
+
+        $sharedEventManager->attach('Blog\Service\EmailService', 'postEmail', function($e) {
+
+            print_r($e->getParams('content'));
+        }, 100);
+    }
 }
